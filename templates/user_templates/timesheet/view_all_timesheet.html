@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View_Timesheet_Details</title>
+</head>
+<body>
+
+  <table>
+        <tr>
+        <th>Emp_id</th>
+        <th>User_Name</th>
+         <th>Project_Name</th>
+        <th>Assigned_Work</th>
+            <th>Total_Hours</th>
+          <th>Date</th>
+          <th>Description</th>
+     </tr>{% for val in all_timesheet %}
+            <tr>
+                 <td>{{ val.emp_id }}</td>
+            <td>{{ val.username}}</td>
+            <td>{{ val.Project_Name }} </td>
+                <td>{{ val.Assigned_Work }}</td>
+                <td>{{ val.Total_Hours }}</td>
+            <td>{{ val.today_date }}</td>
+            <td>{{ val.Description }}</td>
+            <td></td>
+
+            </tr>
+        {% endfor %}
+      </table>
+
+
+</body>
+</html>
+</body>
+</html>

@@ -1,0 +1,275 @@
+{% extends 'admin_templates/admin_base.html' %}
+
+
+{% block content %}
+       <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+						<!--begin::Subheader-->
+						<div  class="subheader py-6 py-lg-8 subheader-transparent" id="kt_subheader">
+							<div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+								<!--begin::Info-->
+								<div class="d-flex align-items-center flex-wrap mr-1">
+									<!--begin::Page Heading-->
+									<div class="d-flex align-items-baseline flex-wrap mr-5">
+										<!--begin::Page Title-->
+										<h5 class="text-dark font-weight-bold my-1 mr-5">Dashboard</h5>
+										<!--end::Page Title-->
+									</div>
+									<!--end::Page Heading-->
+								</div>
+								<!--end::Info-->
+								<!--begin::Toolbar-->
+
+								<div class="d-flex align-items-center flex-wrap">
+                                    {% block timelog %}
+                                    {% endblock timelog %}
+									<a href="#" class="btn btn-fixed-height btn-bg-white btn-text-dark-50 btn-hover-text-primary btn-icon-primary font-weight-bolder font-size-sm px-5 my-1 mr-3" id="kt_dashboard_daterangepicker" data-toggle="tooltip" title="Select dashboard daterange" data-placement="top">
+										<span class="opacity-60 font-weight-bolder mr-2" id="kt_dashboard_daterangepicker_title">Today</span>
+										<span class="font-weight-bolder" id="kt_dashboard_daterangepicker_date">Aug 16</span>
+									</a>
+
+
+
+								</div>
+								<!--end::Toolbar-->
+							</div>
+						</div>
+						<!--end::Subheader-->
+						<!--begin::Entry-->
+						<div  class="d-flex flex-column-fluid">
+							<!--begin::Container-->
+							<div class="container">
+
+
+
+                       <div class="card card-custom">
+									<div class="card-header flex-wrap border-0 pt-6 pb-0">
+										<div class="card-title">
+											<h3 class="card-label"> Announcement
+											<span class="d-block text-muted pt-2 font-size-sm"></span></h3>
+										</div>
+										<div class="card-toolbar">
+
+										</div>
+									</div>
+									<div class="card-body">
+                                            <form method="post">
+                                                {% csrf_token %}
+                                        <div class="row justify-content-center">
+																	<div class="col-xl-9">
+																		<div class="my-5 step" data-wizard-type="step-content" data-wizard-state="current">
+                                                            <div class="form-group row ">
+                                                                   <label class="col-xl-3 col-lg-3 col-form-label">Announcement</label>
+                                                                          <div class="col-lg-9 col-xl-9">
+                                                                                  <input  class="form-control form-control-solid form-control-lg " id="announcement" name="announcement" type="text" value="" placeholder="Enter Latest Announcement..." />
+                                                                                        <span style="display: none;border-color: red" class="form-text text-danger error_text_first_name">Enter Latest Announcement...</span>
+                                                                          </div>
+
+
+                                                             </div>
+{#		                                                         <div class="form-group row">#}
+{#                                                                    <label class="col-xl-3 col-lg-3 col-form-label">Date *</label>#}
+{#                                                                       <div class="col-lg-9 col-xl-9">#}
+{#                                                                           <input class="form-control form-control-solid form-control-lg" id="today_date" name="today_date" type="date" value="" placeholder="Date of Timesheet" />#}
+{#                                                                                    <span style="display: none;border-color: red" class="form-text text-danger error_text_last_name">Date required...</span>#}
+{#                                                                       </div>#}
+{#                                                             </div>#}
+																		</div>
+
+
+																		<!--end::Wizard Step 1-->
+                                                                        <div class="d-flex justify-content-center border-top pt-10 mt-15">
+{#                                                                            <a href="#" class="btn btn-instagram ">Back</a> &nbsp;&nbsp;&nbsp;#}
+                                                                            <button  class="btn btn-twitter" type="button" id="announcement_submit" name="announcement_submit">Submit</button>&nbsp;&nbsp;&nbsp;
+<!--{#                                                                            <a href="{% url 'display_user' %}"  class="btn btn-twitter" type="button" id="create" name="create">Show Users</a>#}-->
+                                                                        </div>
+																		<!--end::Wizard Actions-->
+																	</div>
+																</div>
+
+</form>
+
+
+								</div>
+    </div>
+
+
+								<!--begin::Dashboard-->
+								<!--begin::Row-->
+								<!--end::Dashboard-->
+							</div>
+							<!--end::Container-->
+						</div>
+						<!--end::Entry-->
+					</div>
+
+<script>
+     $(document).on('click', '#announcement_submit', function() {
+
+          var now     = new Date();
+        var year    = now.getFullYear();
+        var month   = now.getMonth()+1;
+        var day     = now.getDate();
+        var hour    = now.getHours();
+        var minute  = now.getMinutes();
+        var second  = now.getSeconds();
+        if(month.toString().length == 1) {
+             month = '0'+month;
+        }
+        if(day.toString().length == 1) {
+             day = '0'+day;
+        }
+        if(hour.toString().length == 1) {
+             hour = '0'+hour;
+        }
+        if(minute.toString().length == 1) {
+             minute = '0'+minute;
+        }
+        if(second.toString().length == 1) {
+             second = '0'+second;
+        }
+        var dateTime = hour+':'+minute+':'+second;
+        var datee = year+'-'+month+'-'+day;
+
+
+       var announcement = $("#announcement").val();
+       var today_date = datee;
+
+       console.log(announcement)
+       console.log(today_date)
+
+  if(announcement =="" ){
+            alert("Please complete field");
+
+
+        }else{
+       $.ajax({
+          type : "POST",
+          url : "{% url 'admin_announcement' %}",
+          data : {
+              announcement : announcement,
+              today_date : today_date,
+              csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+
+          },
+                  success: function (html) {
+                      Swal.fire({
+                          title: "Success",
+                          text: "Successfull...!",
+                          icon: "success",
+                          showConfirmButton: false,
+                          timer: 1000
+                      }).then(function () {
+                          location.reload();
+                      });
+                      $("#announcement_submit").removeAttr("disabled", "disabled");
+                  },
+       });
+        }
+
+   });
+    </script>
+  <script>
+           var KTDatatableHtmlTableDemo = function()    {
+    // Private functions
+
+    // demo initializer
+    var demo = function() {
+
+        var datatable = $('#kt_datatable').KTDatatable({
+            data: {
+                saveState: {cookie: false},
+            },
+            search: {
+                input: $('#kt_datatable_search_query'),
+                key: 'generalSearch'
+            },
+            columns: [
+                {
+                    field: 'Id',
+                    type: 'number',
+                    autoHide: false,
+                    width:50,
+                    textAlign:'center',
+                },
+                {
+                    field: 'Images',
+                    type: 'name',
+					width:50,
+                    autoHide: false,
+                    textAlign:'center',
+                },
+
+      			{
+                    field: 'Vendor Name',
+                    type: 'text',
+                    width:100,
+                    textAlign: 'center',
+                    autoHide: false,
+                },	{
+                    field: 'Quantity',
+                    type: 'number',
+                    width:70,
+                    textAlign: 'center',
+                    autoHide: false,
+                },
+				{
+                    field: 'Po number',
+                    type: 'number',
+                    width:80,
+                    textAlign: 'center',
+                    autoHide: false,
+                },
+				{
+                    field: 'Material code',
+                    type: 'number',
+                    width:40,
+                    textAlign: 'center',
+                    autoHide: false,
+                },
+				{
+                    field: 'Material Description',
+                    type: 'number',
+                    width:100,
+                    textAlign: 'center',
+                    autoHide: false,
+                },
+				{
+                    field: 'UOM',
+                    type: 'text',
+                    width:80,
+                    textAlign: 'center',
+                    autoHide: false,
+                },
+				{
+                    field: 'Actions',
+                    type: 'text',
+                    width:80,
+                    textAlign: 'center',
+                    autoHide: false,
+                },
+            ],
+        });
+          };
+
+          return {
+              // Public functions
+              init: function() {
+                  // init dmeo
+                  demo();
+              },
+          };
+        }();
+
+       jQuery(document).ready(function() {
+                     	KTDatatableHtmlTableDemo.init();
+                     });
+
+
+
+
+$(document).on('click', '#view_leave_request_details', function(){
+        $id = $(this).attr("name");
+        window.location = "view_leave_request_details/" + $id;
+});
+    </script>
+{% endblock content %}

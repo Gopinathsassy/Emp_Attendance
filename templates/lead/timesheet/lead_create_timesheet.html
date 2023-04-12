@@ -1,0 +1,574 @@
+{% extends 'lead/lead_base.html' %}
+{% load static %}
+
+
+
+
+{% block content %}
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js" crossorigin="anonymous">
+	</script>
+
+     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+						<!--begin::Subheader-->
+						<div  class="subheader py-6 py-lg-8 subheader-transparent" id="kt_subheader">
+							<div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+								<!--begin::Info-->
+								<div class="d-flex align-items-center flex-wrap mr-1">
+									<!--begin::Page Heading-->
+									<div class="d-flex align-items-baseline flex-wrap mr-5">
+										<!--begin::Page Title-->
+{#										<h5 class="text-dark font-weight-bold my-1 mr-5">Dashboard</h5>#}
+                                        <!--<a href="{% url 'timesheet_draft' %}">-->
+                                        <!--<button type="button" class="text-hover-dark btn btn-success  btn-hover-bg-warning position-relative"><i class="u-text-hover-dark flaticon2-sms"></i>Draft<span style="top: -12px !important;" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-hover-success bg-warning">-->
+                                        <!--<span  class="visually-hidden">  {{ count }} {{ hours }}</span>-->
+                                        <!--  </span></button>-->
+                                        <!--    &nbsp;&nbsp;&nbsp;-->
+                                        <!--</a>-->
+                                          <a href="{% url 'lead_timesheet_draft' %}">
+                                        <button type="button" class="text-hover-dark btn btn-success  btn-hover-bg-warning position-relative"><i class="u-text-hover-dark flaticon2-sms"></i>Draft<span style="top: -12px !important;" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-hover-success bg-warning">
+                                        <span  class="visually-hidden">  {{ count }} {{ hours }}</span>
+                                          </span></button>
+                                            &nbsp;&nbsp;&nbsp;
+                                        </a>
+										<!--end::Page Title-->
+									</div>
+									<!--end::Page Heading-->
+								</div>
+								<!--end::Info-->
+								<!--begin::Toolbar-->
+								<div class="d-flex align-items-center flex-wrap">
+									<!--begin::Daterange-->
+									<a href="#" class="btn btn-fixed-height btn-bg-white btn-text-dark-50 btn-hover-text-primary btn-icon-primary font-weight-bolder font-size-sm px-5 my-1 mr-3" id="kt_dashboard_daterangepicker" data-toggle="tooltip" title="Select dashboard daterange" data-placement="top">
+										<span class="opacity-60 font-weight-bolder mr-2" id="kt_dashboard_daterangepicker_title">Today</span>
+										<span class="font-weight-bolder" id="kt_dashboard_daterangepicker_date">Aug 16</span>
+									</a>
+									<!--end::Daterange-->
+								</div>
+								<!--end::Toolbar-->
+							</div>
+						</div>
+						<!--end::Subheader-->
+						<!--begin::Entry-->
+						<style>
+						    .time{
+						        padding-top:25px;
+						    }
+						</style>
+						<div  class="d-flex flex-column-fluid">
+							<!--begin::Container-->
+							<div class="container">
+
+
+    <div class="flex-row-fluid ml-lg-8">
+										<!--begin::Card-->
+										<div class="card card-custom card-stretch">
+											<!--begin::Header-->
+											
+														<div class="card-header py-1 ">
+													<h4 class="text-info text-hover-dark font-weight-bold mt-5 mb-5 mr-10  flaticon2-layers-2"> Enter Your Timesheet Below</h4>
+
+		                            <div class="card-toolbar">
+											<div class="dropdown dropdown-inline mr-2">
+											    
+											<!--<a href="{% url 'timesheet_draft' %}">-->
+           <!--                             <button type="button" class="text-hover-dark btn btn-success  btn-hover-bg-warning position-relative"><i class="u-text-hover-dark flaticon2-sms"></i>Draft<span style="top: -12px !important;" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-hover-success bg-warning">-->
+           <!--                             <span  class="visually-hidden">  {{ count }} {{ hours }}</span>-->
+           <!--                               </span></button>-->
+           <!--                                 &nbsp;&nbsp;&nbsp;-->
+           <!--                             </a>-->
+                                                <span  class="flaticon-stopwatch icon-2x mt-5 mb-3 mr-0"><h4 style="color: rgba(6,7,7,0.79)"  class="label label-warning label-inline mr-10 label-xl"><b >Total Hours : {{ total_hours }}</b></h4></span>
+
+                                                
+            <!--                                    <button type="button" class="btn btn-light-warning " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+												<!--<span class="svg-icon svg-icon-md">-->
+                                              
+											</div>
+										</div>
+											</div>
+											
+											
+											
+<!--											<div class="card-header py-1">-->
+<!--												<h3 class="text-info text-hover-dark font-weight-bold mt-5 mb-5 mr-10 flaticon2-layers-2"> Create Timesheet:</h3>-->
+												
+												
+												
+												
+												
+												
+<!--{#                                        <button type="button" class="btn btn-primary">  {% for x in total_user %}<center><h4>Total Hours : {{ x.hours |date:'H:i:s'}}</h4></center>{% endfor %}</button>#}-->
+
+<!--                                                <span  class="flaticon-stopwatch icon-2x mt-5 mb-3 mr-0">{% for x in total_user %}<h4 style="color: rgba(6,7,7,0.79)"  class="label label-warning label-inline mr-10 label-xl"><b >Total Hours : {{ x.hours |date:'H:i'}}</b></h4>{% endfor %}</span>-->
+
+
+
+
+
+<!--											</div>-->
+											<!--end::Header-->
+											<!--begin::Form-->
+
+<form class="form" enctype='multipart/form-data' action="" method="post" id="pic">
+                                                                {% csrf_token %}
+																<div class="row justify-content-center">
+																	<div class="col-xl-9">
+
+																		<div class="my-5 step" data-wizard-type="step-content" data-wizard-state="current">
+																			<h4 class="text-dark font-weight-bold mb-10"></h4>
+
+
+                                                                                     <div  class="form-group row">
+																				<label class="col-xl-3 col-lg-3 col-form-label">Project Name and Code*</label>
+																				<div class="col-lg-9 col-xl-9">
+
+                                                                                        <select class="form-control select2" id="project_name" name="project_name" class="form-control select2">
+                                                                                             <option disabled selected>Search Your Project Name and Code</option>
+                                                                                            {% for values in project_code_name %}
+                                                                                             <option class=""  data-projectcode="{{ values.project_code }}" data-projectname="{{ values.project_name }}"value="{{ values.project_name }} {{values.project_code }}">{{ values.project_name }}-{{values.project_code }}</option>
+                                                                                            {% endfor %}
+                                                                                        </select>
+                                                                                </div>
+																			</div>
+
+																			<!--<div class="form-group row ">-->
+																			<!--	<label class="col-xl-3 col-lg-3 col-form-label">Job Name *</label>-->
+																			<!--	<div class="col-lg-9 col-xl-9">-->
+																			<!--		<input readonly class="form-control form-control-solid form-control-lg " id="job_name" name="job_name" type="text" value="" placeholder="" />-->
+																			<!--		<span style="display: none;border-color: red" class="form-text text-danger error_text_first_name">Task Name required...</span>-->
+                   <!--                                                             </div>-->
+																			<!--</div>-->
+
+																			<div class="form-group row ">
+																				<label class="col-xl-3 col-lg-3 col-form-label">Task Name *</label>
+																				<div class="col-lg-9 col-xl-9">
+																					<input  class="form-control form-control-solid form-control-lg " id="task_name" name="task_name" type="text" value="" placeholder="What work assigned for you?" />
+																					<span style="display: none;border-color: red" class="form-text text-danger error_text_first_name">Task Name required...</span>
+                                                                                </div>
+																			</div>
+																			   {% for x in lead_name %}
+																			<div style="display: none;" class="form-group row ">
+																				<label class="col-xl-3 col-lg-3 col-form-label">Task Name *</label>
+																				<div class="col-lg-9 col-xl-9">
+																					<input  class="form-control form-control-solid form-control-lg " id="leadname" name="leadname" type="hidden" value="{{ x.lead_empid }}" placeholder="What work assigned for you?" />
+																					<span style="display: none;border-color: red" class="form-text text-danger error_text_first_name">Task Name required...</span>
+                                                                                </div>
+																			</div>
+                                                                        {% endfor %}
+
+                                                                            <div class="form-group row">
+																				<label class="col-xl-3 col-lg-3 col-form-label">Date *</label>
+																				<div class="col-lg-9 col-xl-9">
+																					<input class="form-control form-control-solid form-control-lg" id="date" name="date" type="date" value="" placeholder="Date of Timesheet" />
+																					<span style="display: none;border-color: red" class="form-text text-danger error_text_last_name">Date required...</span>
+                                                                                </div>
+																			</div>
+                                                                            <div class="form-group row">
+																				<label class="col-xl-3 col-lg-3 col-form-label">Total Hours *</label>
+																				<div class="col-lg-9 col-xl-9">
+																					<input class="form-control  form-control-solid form-control-lg" id="total_hours" name="total_hours" type="text" value="" placeholder="00:00" />
+																					<span style="display: none;border-color: red" class="form-text text-danger error_text_last_name">Total Hours required...</span>
+                                                                                </div><script>
+		                                                                                $('input[name="total_hours"]').mask('00:00');
+                                                                                </script>
+																			</div>
+                                                                            <div class="form-group row">
+																				<label class="col-xl-3 col-lg-3 col-form-label">Description *</label>
+																				<div class="col-lg-9 col-xl-9">
+                                                                                    <textarea class="form-control form-control-solid form-control-lg" id="description" name="description" type="text" value="" placeholder="Describe what you done today ?" ></textarea>
+																					<span style="display: none;border-color: red" class="form-text text-danger error_text_last_name">Description required...</span>
+                                                                                </div>
+																			</div>
+
+                                                                            <div class="form-group row">
+                                                                                      <label class="col-xl-3 col-lg-3 col-form-label">Image</label>
+																				<div class="col-lg-9 col-xl-9">
+                                                                                     <div class="fallback">
+                                                                                         <input name="image" type="file"   multiple />
+                                                                                         </div>
+                                                                                         </div>
+                                                                                </div>
+
+<br>
+																			</div>
+                                                                    <hr>
+                                                                          <div align="center">
+                                                                              <!--<button style="float: left;" class=" btn btn-dark" onclick="history.back()" type="button"  ><i class="text-hover-success flaticon2-back"></i>Go Back</button>-->
+                                            <br><button style="float: center" class="btn btn-twitter" type="submit" id="timesheet_submit" name="timesheet_submit"><i class="flaticon2-paper-plane"></i>Send to Draft</button>
+                                        </div>
+                                        <br>
+{#                                                                    <hr>#}
+{#<button  class="btn btn-twitter" type="submit" id="timesheet_submit" name="timesheet_submit"><i class="flaticon2-paper-plane"></i>Submit</button>#}
+																			<!--end::Group-->
+
+																		</div><br>
+{#                                                                        <div class="d-flex justify-content-center border-top pt-10 mt-15">#}
+{#                                                                            <a href="#" class="btn btn-instagram ">Back</a> &nbsp;&nbsp;&nbsp;#}
+{#                                                                            <button  class="btn btn-twitter" type="submit" id="timesheet_submit" name="timesheet_submit"><i class="flaticon2-paper-plane"></i>Submit</button>#}
+<!--{#                                                                            <a href="{% url 'display_user' %}"  class="btn btn-twitter" type="button" id="create" name="create">Show Users</a>#}-->
+                                                                        </div>
+																		<!--end::Wizard Actions-->
+
+
+															</form>
+<br><br>
+										</div>
+									</div>
+
+
+
+								<!--begin::Dashboard-->
+								<!--begin::Row-->
+								<!--end::Dashboard-->
+							</div>
+							<!--end::Container-->
+						</div>
+						<!--end::Entry-->
+					</div>
+{#<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>#}
+{#    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.min.js"></script>#}
+    <script type="text/javascript">
+        $(function () {
+            $('[id*=total_hours]').mask('00:00');
+            $('[id*=total_hours]').on("change", function () {
+                var reg = /^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
+                if (!reg.test($('[id*=total_hours]').val())) {
+                   Swal.fire({
+                         title: "error",
+                         text: "please enter valid format...!",
+                         icon: "info",
+                         showConfirmButton: false,
+                         timer: 800
+                     })
+                    $('[id*=total_hours]').val('');
+                    $('[id*=total_hours]').focus();
+                }
+            });
+        });
+    </script>
+{#</head>#}
+{#<body>#}
+{#    <form id="form1" runat="server">#}
+{#    <div>#}
+{#        <input name="txtTime" type="text" maxlength="5" id="total_hours" placeholder="00:00"#}
+{#            style="text-align: center" />#}
+{#    </div>#}
+{#    </form>#}
+
+
+
+
+
+
+<!--<script>-->
+<!--    $(document).ready(function (){-->
+<!--   $(document).on("change", "#project_name", function (){-->
+<!--        var jobname = $(this).find("option:selected").data("jobname");-->
+<!--        $("#job_name").val(jobname);-->
+<!--   });-->
+
+<!--});-->
+<!--</script>-->
+
+
+    <script>
+    $(document).ready(function (){
+        $(document).on("click", "#timesheet_submit", function (event){
+                event.preventDefault();
+
+                var project_name = $("#project_name").find("option:selected").data("projectname");
+                var project_code = $("#project_name").find("option:selected").data("projectcode");
+                // var job_name = $("#project_name").find("option:selected").data("jobname");
+                var task_name = $("#task_name").val();
+                var date = $("#date").val();
+                var total_hours = $("#total_hours").val();
+                var description = $("#description").val();
+                var leadname = $("#leadname").val();
+                {#alert(leadname)#}
+                const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+                if(leadname == undefined){
+                     Swal.fire({
+                         title: "error",
+                         text: "pls contact admin to assign ur lead",
+                         icon: "info",
+                         showConfirmButton: false,
+                         timer: 2000
+                     })
+            }else{
+                console.log(project_name);
+                 console.log(project_code);
+                //  console.log(job_name);
+                 console.log(date);
+                 console.log(total_hours);
+                 console.log(description);
+                if (project_name == "" || task_name==""  || date == "" || total_hours == "" ||  description == "") {
+                 Swal.fire({
+                         title: "error",
+                         text: "Fill all the fields",
+                         icon: "info",
+                         showConfirmButton: false,
+                         timer: 800
+                     })
+                }
+                // Get form
+                else{
+                var form = $('#pic')[0];
+                console.log(form);
+
+                // Create an FormData object
+                var data = new FormData(form);
+                data.append('project_code', $("#project_name").find("option:selected").data("projectcode"));
+                data.append('project_name', $("#project_name").find("option:selected").data("projectname"));
+                    console.log(data);
+             $.ajax({
+                 type: "POST",
+                 url: "timesheet_create",
+                 headers: {'X-CSRFToken': csrftoken},
+                 enctype: 'multipart/form-data',
+                 data: data,
+                     processData: false,
+                     contentType: false,
+                     cache: false,
+                 success: function (datas) {
+                     if (datas === "None"){
+                         Swal.fire({
+                         title: "Data Error...!",
+                         text: "Please Check the hours format...!",
+                         icon: "warning",
+                         showConfirmButton: false,
+                         timer: 1500
+
+                     });
+                         $("#total_hours").addClass("is-invalid");
+
+                     }else{
+                         Swal.fire({
+                         title: "Success",
+                         text: "Done",
+                         icon: "success",
+                         showConfirmButton: false,
+                         timer: 800
+                     }).then(function () {
+                         location.reload();
+                     });
+                         $("#total_hours").removeClass("is-invalid");
+
+                     }
+                     // $("#create").removeAttr("disabled", "disabled");
+                 },
+                 error: function (datas){
+                     alert("error");
+                     $("#total_hours").removeClass("is-invalid");
+                 }
+             });
+         }
+
+            }
+
+
+
+});
+    });
+    </script>
+<script>
+var KTSelect2 = function() {
+ // Private functions
+ var demos = function() {
+  // basic
+  $('#project_name').select2({
+   placeholder: "Select a state"
+  });
+
+  // nested
+  $('#kt_select2_2').select2({
+   placeholder: "Select a state"
+  });
+
+  // multi select
+  $('#kt_select2_3').select2({
+   placeholder: "Select a state",
+  });
+
+  // basic
+  $('#kt_select2_4').select2({
+   placeholder: "Select a state",
+   allowClear: true
+  });
+
+  // loading data from array
+  var data = [{
+   id: 0,
+   text: 'Enhancement'
+  }, {
+   id: 1,
+   text: 'Bug'
+  }, {
+   id: 2,
+   text: 'Duplicate'
+  }, {
+   id: 3,
+   text: 'Invalid'
+  }, {
+   id: 4,
+   text: 'Wontfix'
+  }];
+
+  $('#kt_select2_5').select2({
+   placeholder: "Select a value",
+   data: data
+  });
+
+  // loading remote data
+
+  function formatRepo(repo) {
+   if (repo.loading) return repo.text;
+   var markup = "<div class='select2-result-repository clearfix'>" +
+    "<div class='select2-result-repository__meta'>" +
+    "<div class='select2-result-repository__title'>" + repo.full_name + "</div>";
+   if (repo.description) {
+    markup += "<div class='select2-result-repository__description'>" + repo.description + "</div>";
+   }
+   markup += "<div class='select2-result-repository__statistics'>" +
+    "<div class='select2-result-repository__forks'><i class='fa fa-flash'></i> " + repo.forks_count + " Forks</div>" +
+    "<div class='select2-result-repository__stargazers'><i class='fa fa-star'></i> " + repo.stargazers_count + " Stars</div>" +
+    "<div class='select2-result-repository__watchers'><i class='fa fa-eye'></i> " + repo.watchers_count + " Watchers</div>" +
+    "</div>" +
+    "</div></div>";
+   return markup;
+  }
+
+  function formatRepoSelection(repo) {
+   return repo.full_name || repo.text;
+  }
+
+  $("#kt_select2_6").select2({
+   placeholder: "Search for git repositories",
+   allowClear: true,
+   ajax: {
+    url: "https://api.github.com/search/repositories",
+    dataType: 'json',
+    delay: 250,
+    data: function(params) {
+     return {
+      q: params.term, // search term
+      page: params.page
+     };
+    },
+    processResults: function(data, params) {
+     // parse the results into the format expected by Select2
+     // since we are using custom formatting functions we do not need to
+     // alter the remote JSON data, except to indicate that infinite
+     // scrolling can be used
+     params.page = params.page || 1;
+
+     return {
+      results: data.items,
+      pagination: {
+       more: (params.page * 30) < data.total_count
+      }
+     };
+    },
+    cache: true
+   },
+   escapeMarkup: function(markup) {
+    return markup;
+   }, // let our custom formatter work
+   minimumInputLength: 1,
+   templateResult: formatRepo, // omitted for brevity, see the source of this page
+   templateSelection: formatRepoSelection // omitted for brevity, see the source of this page
+  });
+
+  // custom styles
+
+  // tagging support
+  $('#project_name2_1, #project_name2_2, #project_name2_3, #project_name2_4').select2({
+   placeholder: "Select an option",
+  });
+
+  // disabled mode
+  $('#kt_select2_7').select2({
+   placeholder: "Select an option"
+  });
+
+  // disabled results
+  $('#kt_select2_8').select2({
+   placeholder: "Select an option"
+  });
+
+  // limiting the number of selections
+  $('#kt_select2_9').select2({
+   placeholder: "Select an option",
+   maximumSelectionLength: 2
+  });
+
+  // hiding the search box
+  $('#project_name0').select2({
+   placeholder: "Select an option",
+   minimumResultsForSearch: Infinity
+  });
+
+  // tagging support
+  $('#project_name1').select2({
+   placeholder: "Add a tag",
+   tags: true
+  });
+
+  // disabled results
+  $('.kt-select2-general').select2({
+   placeholder: "Select an option"
+  });
+ }
+
+ var modalDemos = function() {
+  $('#kt_select2_modal').on('shown.bs.modal', function () {
+   // basic
+   $('#project_name_modal').select2({
+    placeholder: "Select a state"
+   });
+
+   // nested
+   $('#kt_select2_2_modal').select2({
+    placeholder: "Select a state"
+   });
+
+   // multi select
+   $('#kt_select2_3_modal').select2({
+    placeholder: "Select a state",
+   });
+
+   // basic
+   $('#kt_select2_4_modal').select2({
+    placeholder: "Select a state",
+    allowClear: true
+   });
+  });
+ }
+
+ // Public functions
+ return {
+  init: function() {
+   demos();
+   modalDemos();
+  }
+ };
+}();
+
+// Initialization
+jQuery(document).ready(function() {
+ KTSelect2.init();
+});
+</script>
+
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+

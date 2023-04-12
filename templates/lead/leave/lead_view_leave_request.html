@@ -1,0 +1,451 @@
+{% extends 'lead/lead_base.html' %}
+
+
+{% block content %}
+
+    <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+						<!--begin::Subheader-->
+						<div  class="subheader py-6 py-lg-8 subheader-transparent" id="kt_subheader">
+							<div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+								<!--begin::Info-->
+								<div class="d-flex align-items-center flex-wrap mr-1">
+									<!--begin::Page Heading-->
+									<div class="d-flex align-items-baseline flex-wrap mr-5">
+										<!--begin::Page Title-->
+										<h5 class="text-dark font-weight-bold my-1 mr-5">Dashboard</h5>
+										<!--end::Page Title-->
+									</div>
+									<!--end::Page Heading-->
+								</div>
+								<!--end::Info-->
+								<!--begin::Toolbar-->
+
+								<div class="d-flex align-items-center flex-wrap">
+                                    {% block timelog %}
+                                    {% endblock timelog %}
+									<a href="#" class="btn btn-fixed-height btn-bg-white btn-text-dark-50 btn-hover-text-primary btn-icon-primary font-weight-bolder font-size-sm px-5 my-1 mr-3" id="kt_dashboard_daterangepicker" data-toggle="tooltip" title="Select dashboard daterange" data-placement="top">
+										<span class="opacity-60 font-weight-bolder mr-2" id="kt_dashboard_daterangepicker_title">Today</span>
+										<span class="font-weight-bolder" id="kt_dashboard_daterangepicker_date">Aug 16</span>
+									</a>
+
+
+
+								</div>
+								<!--end::Toolbar-->
+							</div>
+						</div>
+						<!--end::Subheader-->
+						<!--begin::Entry-->
+						<div  class="d-flex flex-column-fluid">
+							<!--begin::Container-->
+							<div class="container">
+
+
+
+                              <div class="flex-row-fluid ml-lg-8">
+										<!--begin::Card-->
+										<div class="card card-custom card-stretch">
+											<!--begin::Header-->
+											<div class="card-header py-1">
+												<div class="card-title align-items-start flex-column">
+													<h3 class="card-label font-weight-bolder text-dark">Requested Leave Application</h3>
+													<span class="text-muted font-weight-bold font-size-sm mt-1"></span>
+												</div>
+{#												<div class="card-toolbar">#}
+{#													<button type="reset" class="btn btn-primary font-weight-bolder mr-2" id="leave_update">Apply</button>#}
+{#													<button type="reset" class="btn btn-light-primary font-weight-bolder" onClick="window.location.reload();">Cancel</button>#}
+{#												</div>#}
+											</div>
+											<!--end::Header-->
+											<!--begin::Form-->
+											<form method="POST">
+												<!--begin::Body-->
+                                                {% csrf_token %}
+												<div class="card-body">
+													<div class="row">
+														<label class="col-xl-3"></label>
+														<div class="col-lg-9 col-xl-6">
+{#															<h5 class="font-weight-bold mb-6">Customer Info</h5>#}
+														</div>
+													</div>
+
+                                                     <div class="form-group row">
+														<label class="col-xl-3 col-lg-3 col-form-label text-right">Emp Id</label>
+														<div class="col-lg-9 col-xl-6">
+															<input class="form-control form-control-lg form-control-solid" id="emp_id" type="text" value="{{ view_leave_data_details.emp_id }}" readonly/>
+														</div>
+													</div>
+                                                    <div class="form-group row">
+														<label class="col-xl-3 col-lg-3 col-form-label text-right">User Name</label>
+														<div class="col-lg-9 col-xl-6">
+															<input class="form-control form-control-lg form-control-solid" id="username" type="text" value="{{ view_leave_data_details.username }}" readonly/>
+														</div>
+													</div>
+                                                    <div class="form-group row">
+														<label class="col-xl-3 col-lg-3 col-form-label text-right">Reason</label>
+														<div class="col-lg-9 col-xl-6">
+															<input class="form-control form-control-lg form-control-solid" id="reason" type="text" value="{{ view_leave_data_details.reason }}" readonly/>
+														</div>
+													</div>
+													<div class="form-group row">
+														<label class="col-xl-3 col-lg-3 col-form-label text-right">Days</label>
+														<div class="col-lg-9 col-xl-6">
+															<input class="form-control form-control-lg form-control-solid" id="leave_days" type="text" value="{{ view_leave_data_details.leave_days }}" readonly/>
+														</div>
+													</div>
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-3 col-lg-3 col-form-label text-right">Applied Time</label>
+														<div class="col-lg-9 col-xl-6">
+                                                            <input type="text" class="form-control form-control-lg form-control-solid" name="start_date" id="applied_time" value="{{ view_leave_data_details.leave_apply_time }}" readonly>
+                                                        </div>
+													</div>
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-3 col-lg-3 col-form-label text-right">Starting Day</label>
+														<div class="col-lg-9 col-xl-6">
+                                                            <input type="date" class="form-control form-control-lg form-control-solid" name="start_date" id="start_date" value="{{ view_leave_data_details.start_date }}" readonly>
+                                                        </div>
+													</div>
+                                                     <div class="form-group row">
+                                                        <label class="col-xl-3 col-lg-3 col-form-label text-right">Ending Day</label>
+														<div class="col-lg-9 col-xl-6">
+                                                            <input type="date" class="form-control form-control-lg form-control-solid" name="end_date" id="end_date" value="{{ view_leave_data_details.end_date }}" readonly>
+                                                        </div>
+													</div>
+{#                                                    <div class="form-group row">#}
+{#														<label class="col-xl-3 col-lg-3 col-form-label text-right">Description</label>#}
+{#														<div class="col-lg-9 col-xl-6">#}
+{#															<textarea class="form-control form-control-lg form-control-solid" id="description" type="text" readonly>{{ view_leave_request.description }}</textarea>#}
+{#														</div>#}
+{#													</div>#}
+{#                                                    <div class="form-group row">#}
+{#                                                        <label class="col-xl-3 col-lg-3 col-form-label text-right">Status</label>#}
+{#                                                        <div class="col-lg-9 col-xl-6">#}
+{#                                                            <input type="text" class="form-control form-control-lg form-control-solid" name="end_date" id="Billable_Status" value="{{ view_leave_request.Billable_Status }}" readonly>#}
+{#                                                        </div>#}
+{#                                                </div>#}
+                                                    <div>
+                                                        <input class="form-control form-control-solid form-control-lg" value="{{ view_leave_data_details.lead_name }}" id="leadname" name="leadname" type="hidden" placeholder="Current Password" />
+
+                                                        <input class="form-control form-control-solid form-control-lg" value="{{ view_leave_data_details.id }}" id="id" name="emp_id" type="hidden" placeholder="Current Password" />
+{#                                                        <input class="form-control form-control-solid form-control-lg" value="{{ request.user.username }}" id="username" name="username" type="hidden" placeholder="Current Password" />#}
+                                                    </div>
+                                                </div>
+ <hr>
+                                                <div align="center">
+                                            <button type="button" id="user_leave_approval" class="btn btn-primary font-weight-bolder mr-2">Approve</button>
+                                             <button type="button"  class="btn btn-danger font-weight-bolder mr-2" data-toggle="modal" data-target="#modalLoginForm">Reject</button>
+                                        </div>
+											</form>
+<br>
+
+										</div>
+									</div>
+
+
+								<!--begin::Dashboard-->
+								<!--begin::Row-->
+								<!--end::Dashboard-->
+							</div>
+							<!--end::Container-->
+						</div>
+						<!--end::Entry-->
+					</div>
+<div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Reason for Reject</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <i class="fas fa-envelope prefix grey-text"></i>
+            <label data-error="wrong" data-success="right" for="defaultForm-email"></label>
+            <textarea type="email" id="rejected_reason" class="form-control validate"></textarea>
+{#          <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label>#}
+        </div>
+
+{#        <div class="md-form mb-4">#}
+{#          <i class="fas fa-lock prefix grey-text"></i>#}
+{#          <input type="password" id="defaultForm-pass" class="form-control validate">#}
+{#          <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>#}
+{#        </div>#}
+
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button class="btn btn-danger font-weight-bolder mr-2" id="user_leave_rejected">Reject</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <script src="https://momentjs.com/downloads/moment.js"></script>
+<script src="http://isaaccambron.com/twix.js/twix.js/dist/twix.js"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twix.js/0.1.5/twix.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/date-fns/1.30.1/date_fns.js"></script>
+<script>
+
+ $(document).ready(function(){
+          const addDays = (date, days = 1) => {
+          const result = new Date(date);
+          result.setDate(result.getDate() + days);
+          return result;
+        };
+
+        const dateRange = (start, end, range = []) => {
+          if (start > end) return range;
+          const next = addDays(start, 1);
+          return dateRange(next, end, [...range, start]);
+        };
+
+        var from = $("#start_date").val();
+        var to = $("#end_date").val();
+        const range = dateRange(new Date(from),new Date(to));
+
+        {#console.log(range);#}
+
+        var leave_dates1 = range.map(date => date.toISOString().slice(0, 10))
+        {#console.log(leave_dates)#}
+$('#user_leave_approval').on('click', function(){
+
+
+
+
+
+
+        var id = $("#id").val();
+         var username = $("#username").val();
+        var emp_id = $("#emp_id").val();
+
+        var reason = $("#reason").val();
+        var leave_days = $("#leave_days").val();
+        var start_date = $("#start_date").val();
+        var end_date = $("#end_date").val();
+        {#var billable_status = $("#Billable_Status").val();#}
+        var leave_dates = leave_dates1;
+        var applied_time = $("#applied_time").val();
+        var status = "approved";
+         var leadname = $("#leadname").val();
+
+        // if(first_name == "" || last_name == "" || address == "" || username == ""){
+             alert(leadname);
+        // }else{
+            const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+            Swal.fire({
+                title: "Are you sure you want to approve?",
+                text:"",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Yes",
+                cancelButtonText: "No"
+            }).then(function(result) {
+                if (result.value) {
+
+                      $.ajax({
+                      url: "{%  url 'employee_leave_request_approval' %}",
+                    method :'POST',
+                    headers: {'X-CSRFToken': csrftoken},
+                     data: {
+                        id: id,
+                        emp_id: emp_id,
+                        username: username,
+                        reason: reason,
+                        leave_days: leave_days,
+                        start_date: start_date,
+                        end_date: end_date,
+                        {#billable_status: billable_status,#}
+                        leave_dates: leave_dates,
+                        status: status,
+                        leadname:leadname,
+                         applied_time: applied_time,
+
+                     },
+                    success: function (dataResult) {
+                        // if (dataResult === 'no'){
+
+                            Swal.fire({
+                                position: "center",
+                                icon: "success",
+                                title: "User leave approval has been approved...!",
+                                showConfirmButton: false,
+                                timer: 1500
+                            }).then(function (){
+                               window.location.href="{%  url 'emp_user_leave_requests' %}"
+                            });
+
+                    }
+                });
+
+            } else if (result.dismiss === "cancel") {
+                 Swal.fire({
+                     position: "center",
+                     icon: "error",
+                     title: "Not approved :)",
+                     showConfirmButton: false,
+                     timer: 1500
+                 });
+            }
+        });
+
+
+        });
+});
+
+
+$('#user_leave_rejected').on('click', function(){
+
+
+
+
+        var id = $("#id").val();
+         var username = $("#username").val();
+        var emp_id = $("#emp_id").val();
+        var reason = $("#reason").val();
+        var leave_days = $("#leave_days").val();
+        var start_date = $("#start_date").val();
+        var end_date = $("#end_date").val();
+        {#var billable_status = $("#Billable_Status").val();#}
+        var description = $("#description").val();
+        var applied_time = $("#applied_time").val();
+        var status = "rejected";
+        var rejected_reason = $("#rejected_reason").val();
+         var leadname = $("#leadname").val();
+
+        // if(first_name == "" || last_name == "" || address == "" || username == ""){
+             {#alert(billable_status);#}
+        // }else{
+            const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+            Swal.fire({
+                title: "Are you sure you want to reject?",
+                text:"",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Yes",
+                cancelButtonText: "No"
+            }).then(function(result) {
+                if (result.value) {
+
+                      $.ajax({
+                      url: "{%  url 'employee_leave_request_rejected' %}",
+                    method :'POST',
+                    headers: {'X-CSRFToken': csrftoken},
+                     data: {
+                        id: id,
+                        emp_id: emp_id,
+                        username: username,
+                        reason: reason,
+                        leave_days: leave_days,
+                        start_date: start_date,
+                        end_date: end_date,
+                        {#billable_status: billable_status,#}
+                        description: description,
+                        status: status,
+                        leadname:leadname,
+                        applied_time: applied_time,
+                        rejected_reason:rejected_reason,
+
+                     },
+                    success: function (dataResult) {
+                        // if (dataResult === 'no'){
+
+                            Swal.fire({
+                                position: "center",
+                                icon: "success",
+                                title: "User leave approval has been Rejected...!",
+                                showConfirmButton: false,
+                                timer: 1500
+                            }).then(function (){
+                               window.location.href="{%  url 'emp_user_leave_requests' %}"
+                            });
+
+                    }
+                });
+
+            } else if (result.dismiss === "cancel") {
+                 Swal.fire({
+                     position: "center",
+                     icon: "error",
+                     title: "Not approved :)",
+                     showConfirmButton: false,
+                     timer: 1500
+                 })
+            }
+        });
+        });
+
+
+
+{#import moment from 'moment';#}
+{#import 'twix';#}
+{##}
+{#var start_date ='2022-06-05'#}
+{#var end_date = '2022-06-10'#}
+{#var itr = moment.twix(new Date(start_date),new Date(end_date)).iterate("days");#}
+{##}
+{#var range=[];#}
+{#while(itr.hasNext()){#}
+{#    range.push(itr.next().format("YYYY-M-D"))#}
+{# }#}
+{#console.log(range);#}
+
+{##}
+{#function getDatesInRange(startDate, endDate) {#}
+{#  const date = new Date(startDate.getTime());#}
+{##}
+{#  const dates = [];#}
+{##}
+{#  while (date <= endDate) {#}
+{#    dates.push(new Date(date));#}
+{#    date.setDate(date.getDate() + 1);#}
+{#  }#}
+{##}
+{#  return dates;#}
+{# }#}
+
+{#var date1 = $("#start_date").val();#}
+{#var date2 = $("#end_date").val();#}
+{##}
+{#start_date=moment(date1).format('YYYY-MM-DD')#}
+{#end_date=moment(date2).format('YYYY-MM-DD')#}
+{#alert(bbb)#}
+{#const d1 = new Date(start_date);#}
+{#const d2 = new Date(end_date);#}
+{#rr=getDatesInRange(d1, d2);#}
+{##}
+{#dd=moment(rr).format('YYYY-MM-DD')#}
+{#alert(dd)#}
+{##}
+{#dates_arr = dd.map((element) => {#}
+{#  var d = new Date(element);#}
+  {#return `${d.getMonth()+1}/${d.getDate()}/${d.getFullYear()}`;#}
+{# })#}
+
+{#console.log("Dates in the format MM/DD/YYYY : \n", dates_arr);#}
+
+{#startDate=("12-10-2022");#}
+{#endDate=("15-10-2022");#}
+{#aa=Array(Math.floor((endDate - startDate) / 86400000) + 1).fill().map((_, idx) => (new Date(startDate.getTime() + idx * 86400000)));#}
+{#console.log(aa)#}
+{##}
+{#const { format, differenceInDays, addDays } = dateFns;#}
+{##}
+{#const getRangeDates = (startDate, endDate) => {#}
+{#  const days = differenceInDays(endDate, startDate);#}
+{#  console.log([...Array(days + 1).keys()].map((i) => format(addDays(startDate, i), 'YYYY-MM-DD')));#}
+{# };#}
+{##}
+{#var date1 = $("#start_date").val();#}
+{#var date2 = $("#end_date").val();#}
+{#getRangeDates(date1, date2);#}
+</script>
+{% endblock content %}

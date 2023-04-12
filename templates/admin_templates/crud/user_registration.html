@@ -1,0 +1,481 @@
+{% extends "admin_templates/admin_base.html" %}
+{% load static %}
+{% block content %}
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"  crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"  crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"  crossorigin="anonymous"></script>
+
+       <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+						<!--begin::Subheader-->
+						<div class="subheader py-2 py-lg-4 subheader-transparent" id="kt_subheader">
+							<div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+								<!--begin::Details-->
+								<div class="d-flex align-items-center flex-wrap mr-2">
+									<!--begin::Title-->
+									<h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">New User</h5>
+									<!--end::Title-->
+									<!--begin::Separator-->
+									<div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-5 bg-gray-300"></div>
+									<!--end::Separator-->
+									<!--begin::Search Form-->
+									<div class="d-flex align-items-center" id="kt_subheader_search">
+										<span class="text-dark-50 font-weight-bold" id="kt_subheader_total">Enter user details and submit</span>
+									</div>
+									<!--end::Search Form-->
+								</div>
+								<!--end::Details-->
+								<!--begin::Toolbar-->
+								<!--end::Toolbar-->
+							</div>
+						</div>
+						<!--end::Subheader-->
+						<!--begin::Entry-->
+						<div class="d-flex flex-column-fluid">
+							<!--begin::Container-->
+							<div class="container">
+								<!--begin::Card-->
+								<div class="card card-custom card-transparent">
+									<div class="card-body p-0">
+										<!--begin::Wizard-->
+                                    <div class="card card-custom card-shadowless rounded-top-0">
+												<!--begin::Body-->
+												<div class="card-body p-0">
+													<div class="row justify-content-center py-8 px-8 py-lg-15 px-lg-10">
+														<div class="col-xl-12 col-xxl-10">
+															<!--begin::Wizard Form-->
+															<form class="form" method="post">
+                                                                {% csrf_token %}
+																<div class="row justify-content-center">
+																	<div class="col-xl-9">
+																		<!--begin::Wizard Step 1-->
+																		<div class="my-5 step" data-wizard-type="step-content" data-wizard-state="current">
+																			<h5 class="text-dark font-weight-bold mb-10">User's Profile Details:</h5>
+																			<!--begin::Group-->
+                                                                             <div class="form-group row">
+																				<label class="col-xl-3 col-lg-3 col-form-label">Emp ID *</label>
+																				<div class="col-lg-9 col-xl-9">
+																					<input class="form-control form-control-solid form-control-lg" id="emp_id" name="emp_id" type="text" value="" placeholder="Emp ID" />
+																					<span style="display: none;border-color: red" class="form-text text-danger error_text_last_name">Emp_id required...</span>
+                                                                                </div>
+																			</div>
+																			  <div class="form-group row">
+                                                                                    <label class="col-3 col-form-label">Employee Role *</label>
+                                                                                    <div class="col-9 col-form-label">
+                                                                                        <div class="radio-inline">
+                                                                                            <label class="radio radio-outline radio-success">
+                                                                                                <input type="radio" name="is_lead" id="is_emp" value="0"/>
+                                                                                                <span></span>
+                                                                                                Emp
+                                                                                            </label>
+                                                                                            <label class="radio radio-outline radio-success">
+                                                                                                <input type="radio" name="is_lead" id="is_lead" value="0"  />
+                                                                                                <span></span>
+                                                                                                Lead
+                                                                                            </label>  
+                                                                                            <label class="radio radio-outline radio-success">
+                                                                                                <input type="radio" name="is_lead" id="is_admin" value="0"  />
+                                                                                                <span></span>
+                                                                                                Admin
+                                                                                            </label>
+                                                                                        </div>
+                                                                                        <span class="form-text text-muted">Select Employee , Lead or Admin</span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            <div  class="form-group row">
+																				<label class="col-xl-3 col-lg-3 col-form-label">User Name *</label>
+																				<div class="col-lg-9 col-xl-9">
+																					<input class="form-control form-control-solid form-control-lg" id="username" name="username" type="text" placeholder="Username" />
+                                                                                    <span style="display: none;" class="form-text text-danger error_text_username">User Name required...</span>
+																					<span class="form-text text-muted">Enter Your Valid User Name (Note * : If you enter user name onetime after you can't change it...!)</span>
+																				</div>
+																			</div>
+																			<div class="form-group row ">
+																				<label class="col-xl-3 col-lg-3 col-form-label">First Name *</label>
+																				<div class="col-lg-9 col-xl-9">
+																					<input  class="form-control form-control-solid form-control-lg " id="first_name" name="first_name" type="text" value="" placeholder="First Name" />
+																					<span style="display: none;border-color: red" class="form-text text-danger error_text_first_name">First Name required...</span>
+                                                                                </div>
+																			</div>
+																			<!--end::Group-->
+																			<!--begin::Group-->
+																			<div class="form-group row">
+																				<label class="col-xl-3 col-lg-3 col-form-label">Last Name *</label>
+																				<div class="col-lg-9 col-xl-9">
+																					<input class="form-control form-control-solid form-control-lg" id="last_name" name="last_name" type="text" value="" placeholder="Last Name" />
+																					<span style="display: none;border-color: red" class="form-text text-danger error_text_last_name">Last Name required...</span>
+                                                                                </div>
+																			</div>
+                                                                                <div class="form-group row">
+                                                                            <label class="col-xl-3 col-lg-3 col-form-label">Gender *</label>
+                                                                            <div class="col-lg-9 col-xl-9">
+                                                                                <select class="form-control form-control-lg form-control-solid" id="gender" name="gender">
+                                                                                    <option>Male</option>
+                                                                                    <option>Female</option>
+                                                                                </select>
+                                                                             </div>
+                                                                        </div>
+                                                                            <div class="form-group row">
+																				<label class="col-xl-3 col-lg-3 col-form-label">Blood Group</label>
+																				<div class="col-lg-9 col-xl-9">
+																					<input class="form-control form-control-solid form-control-lg" id="blood_group" name="last_name" type="text" value="" placeholder="Blood Group" />
+																					<span style="display: none;border-color: red" class="form-text text-danger error_text_last_name">Blood Group required...</span>
+                                                                                </div>
+																			</div>
+                                                                         <div class="form-group row">
+																				<label class="col-xl-3 col-lg-3 col-form-label">Job role *</label>
+																				<div class="col-lg-9 col-xl-9">
+																					<input class="form-control form-control-solid form-control-lg" id="job_role" name="mobile_no" type="text" value="" placeholder="Job role" />
+																					<span style="display: none;border-color: red" class="form-text text-danger error_text_last_name">Job role required...</span>
+                                                                                </div>
+																			</div>
+                                                                            <div class="form-group row">
+                                                                            <label class="col-xl-3 col-lg-3 col-form-label">Module *</label>
+                                                                            <div class="col-lg-9 col-xl-9">
+                                                                                <select class="form-control form-control-lg form-control-solid" id="module" name="module" >
+                                                                                    <option selected disabled>select module</option>
+                                                                                    <option>Digital</option>
+                                                                                    <option>ABAP</option>
+                                                                                    <option>Basis</option>
+                                                                                    <option>MM</option>
+                                                                                    <option>PP</option>
+                                                                                    <option>QM</option>
+                                                                                    <option>PM</option>
+                                                                                    <option>FI</option>
+                                                                                    <option>CO</option>
+                                                                                    <option>SD</option>
+                                                                                    <option>WM</option>
+                                                                                    <option>Security</option>
+
+
+
+                                                                                </select>
+                                                                             </div>
+                                                                        </div>
+                                                                            <div class="form-group row">
+																				<label class="col-xl-3 col-lg-3 col-form-label">Date of Birth *</label>
+																				<div class="col-lg-9 col-xl-9">
+																					<input class="form-control form-control-solid form-control-lg" id="dob" name="dob" type="date" value="" placeholder="Date of Birth" />
+																					<span style="display: none;border-color: red" class="form-text text-danger error_text_last_name">Date of Birth required...</span>
+                                                                                </div>
+																			</div>
+                                                                            <div class="form-group row">
+																				<label class="col-xl-3 col-lg-3 col-form-label">Date of Join </label>
+																				<div class="col-lg-9 col-xl-9">
+																					<input class="form-control form-control-solid form-control-lg" id="date_of_join" name="date_of_join" type="date" value="" placeholder="Date of Join" />
+																					<span style="display: none;border-color: red" class="form-text text-danger error_text_last_name">Date of Join required...</span>
+                                                                                </div>
+																			</div>
+                                                                            <div class="form-group row">
+                                                                        <label class="col-xl-3 col-lg-3 col-form-label">Official Email ID *</label>
+                                                                                <div class="col-lg-9 col-xl-9">
+                                                                                    <div class="input-group input-group-lg input-group-solid">
+                                                                                        <div class="input-group-prepend">
+                                                                                            <span class="input-group-text">
+                                                                                                <i class="la la-at"></i>
+                                                                                            </span>
+                                                                                        </div>
+                                                                                        <input type="text" class="form-control form-control-lg form-control-solid" id="official_email_id"  placeholder="Official Email ID" />
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group row">
+                                                                                    <label class="col-xl-3 col-lg-3 col-form-label">Personal Email ID *</label>
+                                                                                <div class="col-lg-9 col-xl-9">
+                                                                                        <div class="input-group input-group-lg input-group-solid">
+                                                                                            <div class="input-group-prepend">
+                                                                                                <span class="input-group-text">
+                                                                                                    <i class="la la-at"></i>
+                                                                                                </span>
+                                                                                            </div>
+                                                                                            <input type="text" class="form-control form-control-lg form-control-solid" id="personal_email_id"  placeholder="Personal Email ID" />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            <div class="form-group row">
+																				<label class="col-xl-3 col-lg-3 col-form-label">Adhar NO </label>
+																				<div class="col-lg-9 col-xl-9">
+																					<input class="form-control form-control-solid form-control-lg" id="adhar_no" name="adhar_no" type="text" value="" placeholder="Adhar no" />
+																					<span style="display: none;border-color: red" class="form-text text-danger error_text_last_name">Adhar NO required...</span>
+                                                                                </div>
+																			</div>
+
+                                                                            <div class="form-group row">
+                                                                                   <label class="col-xl-3 col-lg-3 col-form-label">Mobile NO *</label>
+                                                                                    <div class="col-lg-9 col-xl-9">
+                                                                                        <div class="input-group input-group-lg input-group-solid">
+                                                                                            <div class="input-group-prepend">
+                                                                                                <span class="input-group-text">
+                                                                                                    <i class="la la-phone"></i>
+                                                                                                </span>
+                                                                                            </div>
+                                                                                            <input type="text" class="form-control form-control-lg form-control-solid" id="mobile_no" value="" placeholder="Mobile no" />
+                                                                                        </div>
+                            {#															<span class="form-text text-muted">We'll never share your email with anyone else.</span>#}
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            <div class="form-group row">
+																				<label class="col-xl-3 col-lg-3 col-form-label">Address </label>
+																				<div class="col-lg-9 col-xl-9">
+																					<textarea class="form-control form-control-solid form-control-lg" id="address" cols="50" name="mobile_no" type="text"  placeholder="Address" ></textarea>
+																					<span style="display: none;border-color: red" class="form-text text-danger error_text_last_name">Mobile No required...</span>
+                                                                                </div>
+																			</div>
+
+
+
+																			<div class="form-group row">
+																				<label class="col-xl-3 col-lg-3 col-form-label">Password *</label>
+																				<div class="col-lg-9 col-xl-9">
+																					<input class="form-control form-control-solid form-control-lg" id="password" name="password" type="password" placeholder="Password" />
+                                                                                    <span style="display: none;" class="form-text text-danger error_text_password">Password required...</span>
+																					<span class="form-text text-muted">Enter Your Valid Password</span>
+																				</div>
+																			</div>
+																			<!--end::Group-->
+																			<!--begin::Group-->
+																			<div class="form-group row">
+																				<label class="col-xl-3 col-lg-3 col-form-label">Confirm Password *</label>
+																				<div class="col-lg-9 col-xl-9">
+																					<input class="form-control form-control-solid form-control-lg" id="confirm_password" name="confirm_password" type="password" placeholder="Confirm Password" />
+                                                                                    <span style="display: none;" class="form-text text-danger error_text_confirm_password">Confirm Password required...</span>
+																					<span class="form-text text-muted">Re-Enter Your Valid Password...!</span>
+																				</div>
+																			</div>
+																			<!--end::Group-->
+
+																		</div>
+                                                                        <hr>
+                                                                        <h5 class="text-dark font-weight-bold mb-10">User's Account Details:</h5>
+																			<div class="form-group row">
+																				<label class="col-xl-3 col-lg-3 col-form-label">Account Number </label>
+																				<div class="col-lg-9 col-xl-9">
+																					<input class="form-control form-control-solid form-control-lg" id="acc_no" name="last_name" type="text" value="" placeholder="Account Number" />
+																					<span style="display: none;border-color: red" class="form-text text-danger error_text_last_name">Account Number required...</span>
+                                                                                </div>
+																			</div>
+                                                                        																			<div class="form-group row">
+																				<label class="col-xl-3 col-lg-3 col-form-label">IFSC Code </label>
+																				<div class="col-lg-9 col-xl-9">
+																					<input class="form-control form-control-solid form-control-lg" id="ifsc_code" name="last_name" type="text" value="" placeholder="IFSC Code" />
+																					<span style="display: none;border-color: red" class="form-text text-danger error_text_last_name">IFSC Code required...</span>
+                                                                                </div>
+																			</div>
+                                                                            <div class="form-group row">
+																				<label class="col-xl-3 col-lg-3 col-form-label">Branch</label>
+																				<div class="col-lg-9 col-xl-9">
+																					<input class="form-control form-control-solid form-control-lg" id="branch" name="last_name" type="text" value="" placeholder="Branch" />
+																					<span style="display: none;border-color: red" class="form-text text-danger error_text_last_name">Branch required...</span>
+                                                                                </div>
+																			</div>
+																			 <div style="display: none" class="form-group row">
+																				<label class="col-xl-3 col-lg-3 col-form-label">Branch</label>
+																				<div class="col-lg-9 col-xl-9">
+																					<input class="form-control form-control-solid form-control-lg" id="user_password" name="last_name" type="text" value="" placeholder="Branch" />
+																					<span style="display: none;border-color: red" class="form-text text-danger error_text_last_name">Branch required...</span>
+                                                                                </div>
+																			</div>
+
+
+
+																		<!--end::Wizard Step 1-->
+                                                                        <div class="d-flex justify-content-center border-top pt-10 mt-15">
+
+
+
+{#                                                                            <a href="#" class="btn btn-instagram ">Back</a> &nbsp;&nbsp;&nbsp;#}
+                                                                            <button  class="btn btn-twitter" type="button" id="create_user" name="create">Submit</button>&nbsp;&nbsp;&nbsp;
+<!--{#                                                                            <a href="{% url 'display_user' %}"  class="btn btn-twitter" type="button" id="create" name="create">Show Users</a>#}-->
+                                                                        </div>
+																		<!--end::Wizard Actions-->
+																	</div>
+																</div>
+															</form>
+															<!--end::Wizard Form-->
+														</div>
+													</div>
+												</div>
+												<!--end::Body-->
+											</div>
+                                        <!--end::Wizard-->
+									</div>
+								</div>
+								<!--end::Card-->
+							</div>
+							<!--end::Container-->
+						</div>
+						<!--end::Entry-->
+					</div>
+
+<script>
+    $(document).ready(function(){
+    $(document).on('click', '#create_user', function(){
+        if ($("#is_lead").is(':checked') === true)
+        {
+            var is_admin = "0"
+            var is_lead = "1"
+        
+        }
+        else if ($("#is_admin").is(':checked') === true)
+        {
+            var is_admin = "1"
+            var is_lead = "0"
+        
+        }
+        else if ($("#is_emp").is(':checked') === true)
+        {
+            var is_admin = "0"
+            var is_lead = "0"
+        
+        }
+         
+         
+         
+         
+        if (($("#is_emp").is(':checked') === false) &&($("#is_admin").is(':checked') === false) && ($("#is_lead").is(':checked') === false))
+        {
+           Swal.fire({
+                                    title: "Error",
+                                    text: "Select employee Position....!",
+                                    icon: "info",
+                                    showConfirmButton: false,
+                                    timer:1500
+                                })
+        
+        }else{
+                var emp_id = $("#emp_id").val();
+                // var is_lead = $("input[type='radio']:checked").val();
+                var username = $("#username").val();
+                var first_name = $("#first_name").val();
+                var last_name = $("#last_name").val();
+                var dob = $("#dob").val();
+                var blood_group = $("#blood_group").val();
+                var module = $("#module").val();
+                var official_email_id = $("#official_email_id").val();
+                var personal_email_id = $("#personal_email_id").val();
+                var adhar_no = $("#adhar_no").val();
+                var mobile_no = $("#mobile_no").val();
+                var password = $("#password").val();
+                var confirm_password = $("#confirm_password").val();
+                var address = $("#address").val();
+                var gender = $("#gender").val();
+                var job_role = $("#job_role").val();
+                var date_of_join = $("#date_of_join").val();
+                var acc_no = $("#acc_no").val();
+                var ifsc_code = $("#ifsc_code").val();
+                var branch = $("#branch").val();
+                var user_password = $("#user_password").val();
+        {#alert(user_password);#}
+                if(first_name =="" || last_name =="" || emp_id =="" || username =="" || password =="" || confirm_password ==""){
+                     Swal.fire({
+                                            title: "Error",
+                                            text: "Enter all data...!",
+                                            icon: "error",
+                                            showConfirmButton: false,
+                                            timer:1500
+                                        });
+        
+        
+                }else{
+                  if(password === confirm_password ){
+                        $.ajax({
+                        type: "POST",
+                        url: "{% url 'user_registration' %}",
+                        data:{
+                        emp_id :emp_id,
+                        username : username,
+                        first_name : first_name,
+                        last_name : last_name,
+                        dob : dob,
+                        blood_group:blood_group,
+                        module:module,
+                        official_email_id : official_email_id,
+                        personal_email_id : personal_email_id,
+                        adhar_no : adhar_no,
+                        mobile_no : mobile_no,
+                        password : password,
+                        address :address,
+                        gender :gender,
+                        job_role:job_role,
+                        date_of_join:date_of_join,
+                        acc_no:acc_no,
+                        ifsc_code:ifsc_code,
+                        branch:branch,
+                        user_password:user_password,
+                        is_lead:is_lead,
+                        is_admin:is_admin,
+                            csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                        },
+                        success: function (html){
+                                          Swal.fire({
+                                            title: "Success",
+                                            text: "User Created Successfully...!",
+                                            icon: "success",
+                                            showConfirmButton: false,
+                                            timer:1500
+                                        }).then(function () {
+                                            location.reload();
+                                        });
+                        $("#create").removeAttr("disabled", "disabled");
+                    },
+                        error:function (html){
+                                  Swal.fire({
+                                    title: "Opps...",
+                                    text: "User Not Created...!",
+                                    icon: "warning",
+                                    showConfirmButton: false,
+                                    timer:1500
+                                });
+                        $("#create").removeAttr("disabled", "disabled");
+                    }
+                    });
+                  }else{
+                       if(password!==confirm_password){
+                              Swal.fire({
+                                title: "Opps...",
+                                text: "password did'nt match...!",
+                                icon: "warning",
+                                showConfirmButton: false,
+                                timer:1500
+                            });
+                        $("#create").removeAttr("disabled", "disabled");
+                    }
+                       }
+                    }
+        
+        }
+            });
+        });
+    
+
+$(document).ready(function(){
+    $(document).on('keyup', '#password', function() {
+        var user_password = $(this).val();
+        $('#user_password').val(user_password)
+    });
+ });
+
+</script>
+  <script type="text/javascript">
+        $(function () {
+            {#$('[id*=username]').mask('00:00');#}
+            $('[id*=username]').on("change", function () {
+                var reg = /^\S*$/;
+                if (!reg.test($('[id*=username]').val())) {
+                   Swal.fire({
+                         title: "error",
+                         text: "spaces are not allowed in username",
+                         icon: "info",
+                         showConfirmButton: false,
+                         timer: 800
+                     })
+                    $('[id*=username]').val('');
+                    $('[id*=username]').focus();
+                }
+            });
+        });
+    </script>
+{#<script src="{% static 'js/create_all_user_js.js' %}"></script>#}
+{% endblock content %}

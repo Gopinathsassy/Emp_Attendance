@@ -1,0 +1,360 @@
+{% extends 'admin_templates/admin_base.html' %}
+
+
+{% block content %}
+
+    <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+						<!--begin::Subheader-->
+						<div  class="subheader py-6 py-lg-8 subheader-transparent" id="kt_subheader">
+							<div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+								<!--begin::Info-->
+								<div class="d-flex align-items-center flex-wrap mr-1">
+									<!--begin::Page Heading-->
+									<div class="d-flex align-items-baseline flex-wrap mr-5">
+										<!--begin::Page Title-->
+										<h5 class="text-dark font-weight-bold my-1 mr-5"></h5>
+										<!--end::Page Title-->
+									</div>
+									<!--end::Page Heading-->
+								</div>
+								<!--end::Info-->
+								<!--begin::Toolbar-->
+
+								<div class="d-flex align-items-center flex-wrap">
+                                    {% block timelog %}
+                                    {% endblock timelog %}
+									<a href="#" class="btn btn-fixed-height btn-bg-white btn-text-dark-50 btn-hover-text-primary btn-icon-primary font-weight-bolder font-size-sm px-5 my-1 mr-3" id="kt_dashboard_daterangepicker" data-toggle="tooltip" title="Select dashboard daterange" data-placement="top">
+										<span class="opacity-60 font-weight-bolder mr-2" id="kt_dashboard_daterangepicker_title">Today</span>
+										<span class="font-weight-bolder" id="kt_dashboard_daterangepicker_date">Aug 16</span>
+									</a>
+
+
+
+								</div>
+								<!--end::Toolbar-->
+							</div>
+						</div>
+						<!--end::Subheader-->
+						<!--begin::Entry-->
+						<div  class="d-flex flex-column-fluid">
+							<!--begin::Container-->
+							<div class="container">
+
+
+
+                              <div class="flex-row-fluid ml-lg-8">
+										<!--begin::Card-->
+										<div class="card card-custom card-stretch">
+											<!--begin::Header-->
+											<div class="card-header py-1">
+												<div class="card-title align-items-start flex-column">
+													<h3 class="card-label font-weight-bolder text-dark">Location Request</h3>
+													<span class="text-muted font-weight-bold font-size-sm mt-1"></span>
+												</div>
+{#												<div class="card-toolbar">#}
+{#													<button type="reset" class="btn btn-primary font-weight-bolder mr-2" id="leave_update">Apply</button>#}
+{#													<button type="reset" class="btn btn-light-primary font-weight-bolder" onClick="window.location.reload();">Cancel</button>#}
+{#												</div>#}
+											</div>
+											<!--end::Header-->
+											<!--begin::Form-->
+											<form method="POST">
+												<!--begin::Body-->
+                                                {% csrf_token %}
+												<div class="card-body">
+													<div class="row">
+														<label class="col-xl-3"></label>
+														<div class="col-lg-9 col-xl-6">
+{#															<h5 class="font-weight-bold mb-6">Customer Info</h5>#}
+														</div>
+													</div>
+
+                                                     <div style="display: none;" class="form-group row">
+														<label class="col-xl-3 col-lg-3 col-form-label text-right">Emp Id</label>
+														<div class="col-lg-9 col-xl-6">
+															<input class="form-control form-control-lg form-control-solid" id="emp_id" type="hidden" value="{{ view_location_request_details.emp_id }}" readonly/>
+														</div>
+													</div>
+                                                     <div class="form-group row">
+														<label class="col-xl-3 col-lg-3 col-form-label text-right">Added By</label>
+														<div class="col-lg-9 col-xl-6">
+															<input class="form-control form-control-lg form-control-solid" id="added_by" type="text" value="{{ view_location_request_details.added_by }}" readonly/>
+														</div>
+													</div>
+													    <div class="form-group row">
+														<label class="col-xl-3 col-lg-3 col-form-label text-right"> Name</label>
+														<div class="col-lg-9 col-xl-6">
+															<input class="form-control form-control-lg form-control-solid" id="name" type="text" value="{{ view_location_request_details.name }}" readonly/>
+														</div>
+													</div>
+
+                                                    <div class="form-group row">
+														<label class="col-xl-3 col-lg-3 col-form-label text-right">LAT</label>
+														<div class="col-lg-9 col-xl-6">
+															<input class="form-control form-control-lg form-control-solid" id="lat" type="text" value="{{ view_location_request_details.lat }}" readonly/>
+														</div>
+													</div>
+													<div class="form-group row">
+														<label class="col-xl-3 col-lg-3 col-form-label text-right">LON</label>
+														<div class="col-lg-9 col-xl-6">
+															<input class="form-control form-control-lg form-control-solid" id="lon" type="text" value="{{ view_location_request_details.lon }}" readonly/>
+														</div>
+													</div>
+												 
+
+                                                  {% comment %}  <div class="form-group row">
+                                                        <label class="col-xl-3 col-lg-3 col-form-label text-right">Applied Time</label>
+														<div class="col-lg-9 col-xl-6">
+                                                            <input type="text" class="form-control form-control-lg form-control-solid" name="start_date" id="applied_time" value="{{ view_leave_request.leave_apply_time }}" readonly>
+                                                        </div>
+													</div>
+                                                    <div class="form-group row">
+                                                        <label class="col-xl-3 col-lg-3 col-form-label text-right">Starting Day</label>
+														<div class="col-lg-9 col-xl-6">
+                                                            <input type="date" class="form-control form-control-lg form-control-solid" name="start_date" id="start_date" value="{{ view_leave_request.start_date }}" readonly>
+                                                        </div>
+													</div>
+                                                     <div class="form-group row">
+                                                        <label class="col-xl-3 col-lg-3 col-form-label text-right">Ending Day</label>
+														<div class="col-lg-9 col-xl-6">
+                                                            <input type="date" class="form-control form-control-lg form-control-solid" name="end_date" id="end_date" value="{{ view_leave_request.end_date }}" readonly>
+                                                        </div>
+													</div>
+{#                                                    <div class="form-group row">#}{% endcomment %}
+{#														<label class="col-xl-3 col-lg-3 col-form-label text-right">Description</label>#}
+{#														<div class="col-lg-9 col-xl-6">#}
+{#															<textarea class="form-control form-control-lg form-control-solid" id="description" type="text" readonly>{{ view_leave_request.description }}</textarea>#}
+{#														</div>#}
+{#													</div>#}
+{#                                                    <div class="form-group row">#}
+{#                                                        <label class="col-xl-3 col-lg-3 col-form-label text-right">Status</label>#}
+{#                                                        <div class="col-lg-9 col-xl-6">#}
+{#                                                            <input type="text" class="form-control form-control-lg form-control-solid" name="end_date" id="Billable_Status" value="{{ view_leave_request.Billable_Status }}" readonly>#}
+{#                                                        </div>#}
+{#                                                </div>#}
+                                                    <div>
+
+                                                        <input class="form-control form-control-solid form-control-lg" value="{{ view_location_request_details.id }}" id="id" name="id" type="hidden" placeholder="Current Password" />
+{#                                                        <input class="form-control form-control-solid form-control-lg" value="{{ request.user.username }}" id="username" name="username" type="hidden" placeholder="Current Password" />#}
+                                                    </div>
+                                                </div>
+ <hr>
+                                                <div align="center">
+                                            <button type="button" id="user_location_approval" class="btn btn-primary font-weight-bolder mr-2">Approve</button>
+                                             <button type="button" id="user_location_rejected" class="btn btn-danger font-weight-bolder mr-2" >Reject</button>
+                                        </div>
+											</form>
+<br>
+
+										</div>
+									</div>
+
+
+								<!--begin::Dashboard-->
+								<!--begin::Row-->
+								<!--end::Dashboard-->
+							</div>
+							<!--end::Container-->
+						</div>
+						<!--end::Entry-->
+					</div>
+<div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Reason for Reject</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <i class="fas fa-envelope prefix grey-text"></i>
+            <label data-error="wrong" data-success="right" for="defaultForm-email"></label>
+            <textarea type="email" id="location_rejected_reason" class="form-control validate"></textarea>
+{#          <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label>#}
+        </div>
+
+{#        <div class="md-form mb-4">#}
+{#          <i class="fas fa-lock prefix grey-text"></i>#}
+{#          <input type="password" id="defaultForm-pass" class="form-control validate">#}
+{#          <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>#}
+{#        </div>#}
+
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button class="btn btn-danger font-weight-bolder mr-2" id="user_location_rejected">Reject</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <script src="https://momentjs.com/downloads/moment.js"></script>
+<script src="http://isaaccambron.com/twix.js/twix.js/dist/twix.js"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twix.js/0.1.5/twix.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/date-fns/1.30.1/date_fns.js"></script>
+<script>
+
+ $(document).ready(function(){
+
+$('#user_location_approval').on('click', function(){
+
+
+
+
+
+
+        var id = $("#id").val();
+         var username = $("#name").val();
+        var emp_id = $("#emp_id").val();
+
+        var lat = $("#lat").val();
+        var lon = $("#lon").val();
+
+       var status = "approved";
+       var added_by = $("#added_by").val();
+// alert('id');
+        // if(first_name == "" || last_name == "" || address == "" || username == ""){
+             {#alert(billable_status);#}
+        // }else{
+            const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+            Swal.fire({
+                title: "Are you sure you want to approve?",
+                text:"",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Yes",
+                cancelButtonText: "No"
+            }).then(function(result) {
+                if (result.value) {
+
+                      $.ajax({
+                      url: "{%  url 'user_location_approval' %}",
+                    method :'POST',
+                    headers: {'X-CSRFToken': csrftoken},
+                     data: {
+                        id: id,
+                        emp_id: emp_id,
+                        username: username,
+                        lat: lat,
+                        lon: lon,
+                        status: status,
+                        added_by: added_by,
+
+
+                     },
+                    success: function (dataResult) {
+                        // if (dataResult === 'no'){
+
+                            Swal.fire({
+                                position: "center",
+                                icon: "success",
+                                title: "User location approval has been approved...!",
+                                showConfirmButton: false,
+                                timer: 1500
+                            }).then(function (){
+                               window.location.href="{%  url 'user_location_requsts' %}"
+                            });
+
+                    }
+                });
+
+            } else if (result.dismiss === "cancel") {
+                 Swal.fire({
+                     position: "center",
+                     icon: "error",
+                     title: "Not approved :)",
+                     showConfirmButton: false,
+                     timer: 1500
+                 });
+            }
+        });
+
+
+        });
+});
+
+
+$('#user_location_rejected').on('click', function(){
+
+
+
+
+        var id = $("#id").val();
+         var username = $("#name").val();
+        var emp_id = $("#emp_id").val();
+
+        var lat = $("#lat").val();
+        var lon = $("#lon").val();
+        var added_by = $("#added_by").val();
+       var status = "rejected";
+
+        // if(first_name == "" || last_name == "" || address == "" || username == ""){
+             {#alert(billable_status);#}
+        // }else{
+            const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+            Swal.fire({
+                title: "Are you sure you want to reject?",
+                text:"",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Yes",
+                cancelButtonText: "No"
+            }).then(function(result) {
+                if (result.value) {
+
+                      $.ajax({
+                      url: "{%  url 'user_location_rejected' %}",
+                    method :'POST',
+                    headers: {'X-CSRFToken': csrftoken},
+                     data: {
+                        id: id,
+                        emp_id: emp_id,
+                        username: username,
+                        lat: lat,
+                        lon: lon,
+                        added_by: added_by,
+                        status: status,
+
+                     },
+                    success: function (dataResult) {
+                        // if (dataResult === 'no'){
+
+                            Swal.fire({
+                                position: "center",
+                                icon: "success",
+                                title: "User location approval has been Rejected...!",
+                                showConfirmButton: false,
+                                timer: 1500
+                            }).then(function (){
+                               window.location.href="{%  url 'user_location_requsts' %}"
+                            });
+
+                    }
+                });
+
+            } else if (result.dismiss === "cancel") {
+                 Swal.fire({
+                     position: "center",
+                     icon: "error",
+                     title: "Not approved :)",
+                     showConfirmButton: false,
+                     timer: 1500
+                 })
+            }
+        });
+        });
+
+
+
+
+</script>
+{% endblock content %}

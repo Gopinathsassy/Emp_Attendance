@@ -1,0 +1,474 @@
+{% extends 'lead/lead_base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+						<!--begin::Subheader-->
+						<div  class="subheader py-6 py-lg-8 subheader-transparent" id="kt_subheader">
+							<div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+								<!--begin::Info-->
+								<div class="d-flex align-items-center flex-wrap mr-1">
+									<!--begin::Page Heading-->
+									<div class="d-flex align-items-baseline flex-wrap mr-5">
+										<!--begin::Page Title-->
+										<h5 class="text-dark font-weight-bold my-1 mr-5">Dashboard</h5>
+										<!--end::Page Title-->
+									</div>
+									<!--end::Page Heading-->
+								</div>
+								<!--end::Info-->
+								<!--begin::Toolbar-->
+								<div class="d-flex align-items-center flex-wrap">
+									<!--begin::Daterange-->
+									<a href="#" class="btn btn-fixed-height btn-bg-white btn-text-dark-50 btn-hover-text-primary btn-icon-primary font-weight-bolder font-size-sm px-5 my-1 mr-3" id="kt_dashboard_daterangepicker" data-toggle="tooltip" title="Select dashboard daterange" data-placement="top">
+										<span class="opacity-60 font-weight-bolder mr-2" id="kt_dashboard_daterangepicker_title">Today</span>
+										<span class="font-weight-bolder" id="kt_dashboard_daterangepicker_date">Aug 16</span>
+									</a>
+									<!--end::Daterange-->
+								</div>
+								<!--end::Toolbar-->
+							</div>
+						</div>
+						<!--end::Subheader-->
+						<!--begin::Entry-->
+						<div  class="d-flex flex-column-fluid">
+							<!--begin::Container-->
+							<div class="container">
+
+
+<div class="flex-row-fluid ml-lg-8">
+{#       {% for admin_edit_user_profile in admin_edit_user_profile %}#}
+										<!--begin::Card-->
+										<div class="card card-custom card-stretch">
+											<!--begin::Header-->
+											<div class="card-header py-1">
+												<div class="card-title align-items-start flex-column">
+													<h3 class="card-label font-weight-bolder text-dark">User's Information</h3>
+													<span class="text-muted font-weight-bold font-size-sm mt-1">Update user's personal information</span>
+												</div>
+												<div class="card-toolbar">
+													<button type="button" class="btn btn-primary font-weight-bolder mr-2" id="admin_edit">Save Changes</button>
+													<button type="reset" class="btn btn-light-primary font-weight-bolder">Cancel</button>
+												</div>
+											</div>
+											<!--end::Header-->
+											<!--begin::Form-->
+							<form class="form" enctype='multipart/form-data' action="" method="POST" id="user_pic">
+												<!--begin::Body-->
+                                                {% csrf_token %}
+												<div class="card-body">
+													<div class="row">
+														<label class="col-xl-3"></label>
+														<div class="col-lg-9 col-xl-6">
+															<h5 class="font-weight-bold mb-6">Customer Info</h5>
+														</div>
+													</div>
+
+
+{#                                                    <img id="profileDisplay" onclick="triggerClick()" src="uploads/1661325274-wp7342045-angry-birds-cute-wallpapers.jpg" class="image-input-wrapper">#}
+												 <div class="form-group row">
+														<label class="col-xl-3 col-lg-3 col-form-label text-right">Photo</label>
+														<div class="col-lg-9 col-xl-6">
+                                                            {% if admin_edit_user_profile.user_image  != '' %}
+															<div class="image-input image-input-outline" id="kt_profile_avatar" style="background-image: url(assets/media/users/blank.png)">
+{#                                                                <img class="image-input-wrapper" name="profile_avatar" id="kt_profile_avatar" src="{{ admin_edit_user_profile.user_image.url }}" alt="" style="width:120px;" height="120px">#}
+
+
+                                                                <div class="image-input-wrapper" style="background-image: url('{{ admin_edit_user_profile.user_image.url }}')"> </div>
+																<label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="Change avatar">
+																	<i class="fa fa-pen icon-sm text-muted"></i>
+																	<input type="file" name="profile_avatar" accept=".png, .jpg, .jpeg" />
+																	<input type="hidden" name="profile_avatar_remove" />
+																</label>
+																<span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="cancel" data-toggle="tooltip" title="Cancel avatar">
+																	<i class="ki ki-bold-close icon-xs text-muted"></i>
+																</span>
+																<span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="remove" data-toggle="tooltip" title="Remove avatar">
+																	<i class="ki ki-bold-close icon-xs text-muted"></i>
+																</span>
+															</div>
+                                                            {% else %}
+                                                        <div class="image-input image-input-outline" id="kt_profile_avatar" style="background-image: url(assets/media/users/blank.png)">
+																<div class="image-input-wrapper" style="background-image: url('{% static 'assets/media/users/150-11.jpg' %}')"></div>
+																<label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="Change avatar">
+																	<i class="fa fa-pen icon-sm text-muted"></i>
+																	<input type="file" name="profile_avatar" accept=".png, .jpg, .jpeg" />
+																	<input type="hidden" name="profile_avatar_remove" />
+																</label>
+																<span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="cancel" data-toggle="tooltip" title="Cancel avatar">
+																	<i class="ki ki-bold-close icon-xs text-muted"></i>
+																</span>
+																<span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="remove" data-toggle="tooltip" title="Remove avatar">
+																	<i class="ki ki-bold-close icon-xs text-muted"></i>
+																</span>
+															</div>
+{% endif %}
+															<span class="form-text text-muted">Allowed file types: png, jpg, jpeg.</span>
+														</div>
+													</div>
+                                                      <div class="form-group row">
+{#														<label class="col-xl-3 col-lg-3 col-form-label text-right">ID </label>#}
+														<div class="col-lg-9 col-xl-6">
+														    
+															<input class="form-control form-control-lg form-control-solid" name="id" id="id" type="hidden" value="{{ admin_edit_user_profile.id }}"/>
+{#															<input class="form-control form-control-lg form-control-solid" name="profile_avatar" id="id" type="hidden" value="{{ admin_edit_user_profile.image }}"/>#}
+														</div>
+													</div>
+                                                     <div class="form-group row">
+{#														<label class="col-xl-3 col-lg-3 col-form-label text-right">ID </label>#}
+														<div class="col-lg-9 col-xl-6">
+															<input class="form-control form-control-lg form-control-solid" name="password" id="password" type="hidden" value="{{ admin_edit_user_profile.password }}"/>
+														</div>
+													</div>
+                                                    <div class="form-group row">
+														<label class="col-xl-3 col-lg-3 col-form-label text-right">User Name</label>
+														<div class="col-lg-9 col-xl-6">
+															<input class="form-control form-control-lg form-control-solid" name="username" id="username" type="text" value="{{ admin_edit_user_profile.username }}" readonly/>
+														</div>
+													</div>
+													<div class="form-group row">
+														<label class="col-xl-3 col-lg-3 col-form-label text-right">Employee ID</label>
+														<div class="col-lg-9 col-xl-6">
+															<input class="form-control form-control-lg form-control-solid" name="emp_id" id="emp_id" type="text" value="{{ admin_edit_user_profile.emp_id }}" readonly/>
+														</div>
+													</div>
+                                                    <div class="form-group row">
+														<label class="col-xl-3 col-lg-3 col-form-label text-right">First Name</label>
+														<div class="col-lg-9 col-xl-6">
+															<input class="form-control form-control-lg form-control-solid" name="first_name" id="first_name" type="text" value="{{ admin_edit_user_profile.first_name }}" />
+														</div>
+													</div>
+                                                    <div class="form-group row">
+														<label class="col-xl-3 col-lg-3 col-form-label text-right">Last Name</label>
+														<div class="col-lg-9 col-xl-6">
+															<input class="form-control form-control-lg form-control-solid" name="last_name" id="last_name" type="text" value="{{ admin_edit_user_profile.last_name }}" />
+														</div>
+													</div>
+                                                     <div class="form-group row">
+                                                        <label class="col-xl-3 col-lg-3 col-form-label text-right">Gender</label>
+                                                        <div class="col-lg-9 col-xl-6">
+                                                            <select class="form-control form-control-lg form-control-solid" id="gender" name="gender">
+                                                                <option>Male</option>
+                                                                <option>Female</option>
+                                                            </select>
+                                                         </div>
+                                                </div>
+
+                                                       <div class="form-group row">
+														<label class="col-xl-3 col-lg-3 col-form-label text-right">Blood Group</label>
+														<div class="col-lg-9 col-xl-6">
+															<input class="form-control form-control-lg form-control-solid" name="blood_group" id="blood_group" type="text" value="{{ admin_edit_user_profile.blood_group }}" />
+														</div>
+													</div>
+
+                                                    <div class="form-group row">
+														<label class="col-xl-3 col-lg-3 col-form-label text-right">Job Role</label>
+														<div class="col-lg-9 col-xl-6">
+															<input class="form-control form-control-lg form-control-solid"  name="job_role" id="job_role" type="text" value="{{ admin_edit_user_profile.job_role }}" />
+														</div>
+													</div>
+                                                    <div class="form-group row">
+                                                                            <label class="col-xl-3 col-lg-3 col-form-label text-right">Module *</label>
+                                                                            <div class="col-lg-9 col-xl-6">
+                                                                                <select class="form-control form-control-lg form-control-solid" id="module" name="module" >
+                                                                                    <option selected >{{ admin_edit_user_profile.module  }}</option>
+                                                                                    <option>Digital Innovation</option>
+                                                                                    <option>Basis</option>
+                                                                                    <option>MM</option>
+                                                                                    <option>ABAP</option>
+                                                                                    <option>PP</option>
+                                                                                    <option>QM</option>
+                                                                                    <option>PM</option>
+                                                                                    <option>FI</option>
+                                                                                    <option>CO</option>
+                                                                                    <option>SD</option>
+                                                                                    <option>WM</option>
+                                                                                    <option>Security</option>
+
+
+
+                                                                                </select>
+                                                                             </div>
+                                                                        </div>
+                                                    <div class="form-group row">
+														<label class="col-xl-3 col-lg-3 col-form-label text-right">Date Of Birth</label>
+														<div class="col-lg-9 col-xl-6">
+															<input class="form-control form-control-lg form-control-solid" name="dob" id="dob" type="date" value="{{ admin_edit_user_profile.dob }}" />
+														</div>
+													</div>
+
+
+
+													<div class="form-group row">
+														<label class="col-xl-3 col-lg-3 col-form-label text-right">Adhar Number</label>
+														<div class="col-lg-9 col-xl-6">
+															<input class="form-control form-control-lg form-control-solid" name="adhar_no" id="adhar_no" type="text" value="{{ admin_edit_user_profile.adhar_no }}" />
+{#															<span class="form-text text-muted">If you want your invoices addressed to a company. Leave blank to use your full name.</span>#}
+														</div>
+													</div>
+													<div class="row">
+														<label class="col-xl-3"></label>
+														<div class="col-lg-9 col-xl-6">
+															<h5 class="font-weight-bold mt-10 mb-6">Contact Info</h5>
+														</div>
+													</div>
+													<div class="form-group row">
+														<label class="col-xl-3 col-lg-3 col-form-label text-right">Mobile Number</label>
+														<div class="col-lg-9 col-xl-6">
+															<div class="input-group input-group-lg input-group-solid">
+																<div class="input-group-prepend">
+																	<span class="input-group-text">
+																		<i class="la la-phone"></i>
+																	</span>
+																</div>
+																<input type="text" class="form-control form-control-lg form-control-solid" name="mobile_no" id="mobile_no" value="{{ admin_edit_user_profile.mobile_no }}" placeholder="Phone" />
+															</div>
+{#															<span class="form-text text-muted">We'll never share your email with anyone else.</span>#}
+														</div>
+													</div>
+													 <div class="form-group row">
+														<label class="col-xl-3 col-lg-3 col-form-label text-right">Official Email Address</label>
+														<div class="col-lg-9 col-xl-6">
+															<div class="input-group input-group-lg input-group-solid">
+																<div class="input-group-prepend">
+																	<span class="input-group-text">
+																		<i class="la la-at"></i>
+																	</span>
+																</div>
+																<input type="text" class="form-control form-control-lg form-control-solid" name="official_email_id" id="official_email_id" value="{{ admin_edit_user_profile.official_email_id}}" placeholder="Email" />
+															</div>
+														</div>
+													</div>
+													<div class="form-group row">
+														<label class="col-xl-3 col-lg-3 col-form-label text-right">Personal Email Address</label>
+														<div class="col-lg-9 col-xl-6">
+															<div class="input-group input-group-lg input-group-solid">
+																<div class="input-group-prepend">
+																	<span class="input-group-text">
+																		<i class="la la-at"></i>
+																	</span>
+																</div>
+																<input type="text" class="form-control form-control-lg form-control-solid" name="personal_email_id" id="personal_email_id" value="{{ admin_edit_user_profile.personal_email_id}}" placeholder="Email" />
+															</div>
+														</div>
+													</div>
+
+                                                    <div class="form-group row">
+														<label class="col-xl-3 col-lg-3 col-form-label text-right">Address</label>
+														<div class="col-lg-9 col-xl-6">
+														
+															<textarea class="form-control form-control-lg form-control-solid" name="address" id="address" type="text" value="{{ admin_edit_user_profile.address }}" ></textarea>
+														</div>
+													</div>
+                                                    <div class="row">
+														<label class="col-xl-3"></label>
+														<div class="col-lg-9 col-xl-6">
+															<h5 class="font-weight-bold mt-10 mb-6">Account Details</h5>
+														</div>
+													</div>
+													<div class="form-group row">
+														<label class="col-xl-3 col-lg-3 col-form-label text-right">Account Number</label>
+														<div class="col-lg-9 col-xl-6">
+															<div class="input-group input-group-lg input-group-solid">
+																<div class="input-group-prepend">
+																	<span class="input-group-text">
+																		<i class="la la-phone"></i>
+																	</span>
+																</div>
+																<input type="text" class="form-control form-control-lg form-control-solid" name="acc_no" id="acc_no" value="{{ admin_edit_user_profile.acc_no }}" placeholder="Account Number" />
+															</div>
+{#															<span class="form-text text-muted">We'll never share your email with anyone else.</span>#}
+														</div>
+													</div>
+                                                    <div class="form-group row">
+														<label class="col-xl-3 col-lg-3 col-form-label text-right">IFSC Code</label>
+														<div class="col-lg-9 col-xl-6">
+															<div class="input-group input-group-lg input-group-solid">
+																<div class="input-group-prepend">
+																	<span class="input-group-text">
+																		<i class="la la-phone"></i>
+																	</span>
+																</div>
+																<input type="text" class="form-control form-control-lg form-control-solid" name="ifsc_code" id="ifsc_code" value="{{ admin_edit_user_profile.ifsc_code }}" placeholder="IFSC Code" />
+															</div>
+{#															<span class="form-text text-muted">We'll never share your email with anyone else.</span>#}
+														</div>
+													</div>
+                                                    <div class="form-group row">
+														<label class="col-xl-3 col-lg-3 col-form-label text-right">Branch</label>
+														<div class="col-lg-9 col-xl-6">
+															<div class="input-group input-group-lg input-group-solid">
+																<div class="input-group-prepend">
+																	<span class="input-group-text">
+																		<i class="la la-phone"></i>
+																	</span>
+																</div>
+																<input type="text" class="form-control form-control-lg form-control-solid" name="branch" id="branch" value="{{ admin_edit_user_profile.branch }}" placeholder="branch" />
+															</div>
+{#															<span class="form-text text-muted">We'll never share your email with anyone else.</span>#}
+														</div>
+													</div>
+												</div>
+												<!--end::Body-->
+											</form>
+											<!--end::Form-->
+										</div>
+									</div>
+
+
+
+								<!--begin::Dashboard-->
+								<!--begin::Row-->
+								<!--end::Dashboard-->
+							</div>
+							<!--end::Container-->
+						</div>
+						<!--end::Entry-->
+					</div>
+
+
+{#        {% endfor %}#}
+
+     <script src="{% static 'js/admin_page_js/edit_user_js.js' %}"></script>
+<script>
+$('#admin_edit').on('click', function(){
+        event.preventDefault();
+        var id = $("#id").val();
+         var password = $("#password").val();
+        var emp_id = $("#emp_id").val();
+        var username = $("#username").val();
+        var first_name = $("#first_name").val();
+        var last_name = $("#last_name").val();
+        var blood_group = $("#blood_group").val();
+        var dob = $("#dob").val();
+        var module = $("#module").val();
+        var gender = $("#gender").val();
+        var official_email_id = $("#official_email_id").val();
+        var personal_email_id = $("#personal_email_id").val();
+        var adhar_no = $("#adhar_no").val();
+        var mobile_no = $("#mobile_no").val();
+        var job_role = $("#job_role").val();
+        var address = $("#address").val();
+        var acc_no = $("#acc_no").val();
+        var ifsc_code = $("#ifsc_code").val();
+        var branch = $("#branch").val();
+        {#var image = $("#kt_profile_avatar").val();#}
+
+
+
+         if(first_name == "" || last_name == "" || username == ""){
+    alert('Please complete field');
+        }else{
+             var form = $('#user_pic')[0];
+                {#console.log(form);#}
+
+                // Create an FormData object
+                var data = new FormData(form);
+        const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+            Swal.fire({
+                title: "Are you sure you want to update?",
+                text:"",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Yes",
+                cancelButtonText: "No"
+            }).then(function(result) {
+                if (result.value) {
+
+                      $.ajax({
+                      url: "lead_update_details/" + id,
+                    method :'POST',
+                    enctype: 'multipart/form-data',
+                    headers: {'X-CSRFToken': csrftoken},
+                     data: data,
+                        {#id: id,#}
+                        {#password:password,#}
+                        {#emp_id: emp_id,#}
+                        {#username: username,#}
+                        {#first_name: first_name,#}
+                        {#last_name: last_name,#}
+                        {#blood_group:blood_group,#}
+                        {#dob: dob,#}
+                        {#module:module,#}
+                        {#gender: gender,#}
+                        {#official_email_id: official_email_id,#}
+                        {#personal_email_id: personal_email_id,#}
+                        {#adhar_no: adhar_no,#}
+                        {#mobile_no: mobile_no,#}
+                        {#job_role:job_role,#}
+                        {#address:address,#}
+                        {#acc_no:acc_no,#}
+                        {#ifsc_code:ifsc_code,#}
+                        {#branch:branch#}
+
+                            processData: false,
+                            contentType: false,
+                            cache: false,
+                    success: function (ok) {
+                        // if (dataResult === 'no'){
+
+                            Swal.fire({
+                                position: "center",
+                                icon: "success",
+                                title: "User details has been updated...!",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                            window.location.reload();
+
+                    }
+                });
+
+            } else if (result.dismiss === "cancel") {
+                 Swal.fire({
+                     position: "center",
+                     icon: "error",
+                     title: "User Not updated :)",
+                     showConfirmButton: false,
+                     timer: 1500
+                 });
+            }
+        });
+         }
+
+        });
+
+"use strict";
+
+// Class definition
+var KTProfile = function () {
+	// Elements
+	var avatar;
+	var offcanvas;
+
+	// Private functions
+	var _initAside = function () {
+		// Mobile offcanvas for mobile mode
+		offcanvas = new KTOffcanvas('kt_profile_aside', {
+            overlay: true,
+            baseClass: 'offcanvas-mobile',
+            //closeBy: 'kt_user_profile_aside_close',
+            toggleBy: 'kt_subheader_mobile_toggle'
+        });
+	}
+
+	var _initForm = function() {
+		avatar = new KTImageInput('kt_profile_avatar');
+	}
+
+	return {
+		// public functions
+		init: function() {
+			_initAside();
+			_initForm();
+		}
+	};
+}();
+
+jQuery(document).ready(function() {
+	KTProfile.init();
+});
+
+</script>
+{% endblock content %}

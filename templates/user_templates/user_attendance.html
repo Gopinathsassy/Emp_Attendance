@@ -1,0 +1,650 @@
+{% extends 'user_templates/user_base.html' %}
+{% load static %}
+
+{% block content %}
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"  crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"  crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"  crossorigin="anonymous"></script>
+     <style>
+.button-1 {
+  background-color:{{ clockin.button_color }};
+  border-radius: 8px;
+  border-style: none;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  height: 40px;
+  line-height: 20px;
+  list-style: none;
+  margin: 0;
+  outline: none;
+  padding: 10px 16px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: color 100ms;
+  vertical-align: baseline;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+    </style>
+
+
+      <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+						<!--begin::Subheader-->
+						<div  class="subheader py-6 py-lg-8 subheader-transparent" id="kt_subheader">
+							<div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+								<!--begin::Info-->
+								<div class="d-flex align-items-center flex-wrap mr-1">
+									<!--begin::Page Heading-->
+									<div class="d-flex align-items-baseline flex-wrap mr-5">
+										<!--begin::Page Title-->
+										<h5 class="text-dark font-weight-bold my-1 mr-5">Dashboard</h5>
+										<!--end::Page Title-->
+									</div>
+									<!--end::Page Heading-->
+								</div>
+								<!--end::Info-->
+								<!--begin::Toolbar-->
+								<div class="d-flex align-items-center flex-wrap">
+									<!--begin::Daterange-->
+									<a href="#" class="btn btn-fixed-height btn-bg-white btn-text-dark-50 btn-hover-text-primary btn-icon-primary font-weight-bolder font-size-sm px-5 my-1 mr-3" id="kt_dashboard_daterangepicker" data-toggle="tooltip" title="Select dashboard daterange" data-placement="top">
+										<span class="opacity-60 font-weight-bolder mr-2" id="kt_dashboard_daterangepicker_title">Today</span>
+										<span class="font-weight-bolder" id="kt_dashboard_daterangepicker_date">Aug 16</span>
+									</a>
+									<!--end::Daterange-->
+								</div>
+								<!--end::Toolbar-->
+							</div>
+						</div>
+						<!--end::Subheader-->
+						<!--begin::Entry-->
+						<div  class="d-flex flex-column-fluid">
+							<!--begin::Container-->
+							<div class="container">
+
+
+ <form method="post">
+ {% csrf_token %}
+                                <div class="row">
+
+                                      <div class="col-xl-4">
+										<!--begin::Stats Widget 12-->
+										<div class="card card-custom card-stretch gutter-b">
+											<!--begin::Body-->
+											<div class="card-body">
+												<div id="stats-widget-slider-3" class="carousel slide" data-ride="carousel" data-interval="8000">
+													<!--begin::Top-->
+													<div class="d-flex align-items-center justify-content-between flex-wrap">
+														<!--begin::Label-->
+														<span class="font-size-h6 text-muted font-weight-bolder text-uppercase pr-2">{{ clockin.button_name }}</span>
+														<!--end::Label-->
+													</div>
+
+												</div>
+											</div>
+
+
+											<div class="card-footer border-0 d-flex align-items-center justify-content-between pt-0">
+												<!--begin::Label-->
+                                            <h1 id="time" >{{ clockin.curr_time }}</h1>
+                                            <input type="time" style="display:none" id="times" value="{{ clockin.curr_time }}"></input>
+
+
+
+												<span  class="text-muted font-size-lg font-weight-bold pr-2"></span>
+												<!--end::Label-->
+												<button class="button-1" type="button"  id="{{ clockin.button_id }}">{{ clockin.button_name }}</button>
+   									</div>
+
+
+											<!--end::Footer-->
+										</div>
+
+										<!--end::Stats Widget 12-->
+									</div>
+                                    <div class="col-xl-4">
+										<!--begin::Stats Widget 12-->
+										<div class="card card-custom card-stretch gutter-b">
+											<!--begin::Body-->
+
+                                            <div class="card-body">
+												<div id="stats-widget-slider-3" class="carousel slide" data-ride="carousel" data-interval="8000">
+													<!--begin::Top-->
+													<div class="d-flex align-items-center justify-content-between flex-wrap">
+{#														<!--begin::Label-->   <img alt="Logo" src={% static "images/—Pngtree—business management concept money saving_5335911.png" %} class="h-120px" class=" w-120px"  />#}
+
+
+
+														<span class="font-size-h6 text-muted font-weight-bolder text-uppercase pr-2">Calculating Hours
+
+                                                        </span>
+
+                                                        <!--end::Label-->
+													</div>
+
+													<!--end::Top-->
+
+												</div>
+											</div>
+
+
+											<!--end::Body-->
+											<!--begin::Footer-->
+											<div class="card-footer border-0 d-flex align-items-center justify-content-between pt-0">
+                                                <img alt="Logo" src={% static "images/Pngtreeovertimestayuptotime_3148409.png" %} class="h-100px" class=" w-80px"  />
+
+												<!--begin::Label-->
+{#<p id="days"></p>#}
+{#    <h1 id="hours"></h1>#}
+{#    <h1 id="mins"></h1>#}
+{#    <h1 id="secs"></h1>#}
+{#    <h2 id="end"></h2>#}
+{#                                          {% for x in clockout_time %}#}
+{#                                            <input type="time" id=""#}
+                                                <h1 id="output" style="padding-right: 25px;"></h1>
+{#                                                {% endfor %}#}
+{#                                                <h1 id="clockDiv"></h1>#}
+{#												<span  class="text-muted font-size-lg font-weight-bold pr-2"></span>#}
+												<!--end::Label-->
+
+{#                                                {% for x in current_time %}#}
+{#												<button class="btn btn-sm btn-primary font-weight-bolder px-6" id="clock_out">Check out</button>#}
+{#											{% endfor %}#}
+
+{#                                                <h1 id="timess" >{{ clockin.current_time }}</h1>#}
+                                            </div>
+											<!--end::Footer-->
+										</div>
+										<!--end::Stats Widget 12-->
+									</div>
+									<div class="col-xl-4">
+										<!--begin::Stats Widget 12-->
+										<div class="card card-custom card-stretch gutter-b">
+											<!--begin::Body-->
+											<div class="card-body">
+												<div id="stats-widget-slider-3" class="carousel slide" data-ride="carousel" data-interval="8000">
+													<!--begin::Top-->
+													<div class="d-flex align-items-center justify-content-between flex-wrap">
+														<!--begin::Label-->
+														<span class="font-size-h6 text-muted font-weight-bolder text-uppercase pr-2">Total Hours Worked</span>
+														<!--end::Label-->
+
+													</div>
+													<!--end::Top-->
+
+												</div>
+											</div>
+
+											<!--end::Body-->
+											<!--begin::Footer-->
+											<div class="card-footer border-0 d-flex align-items-center justify-content-between pt-0">
+                                               <img alt="Logo" src={% static "images/Pngtreeovertimestayuptotime_3148409.png" %} class="h-100px" class=" w-80px"  />
+
+                                                {% for x in recent %}
+                                                <center><h2 id="total_hours">{{ x.user_total_hours |date:'H:i:s'}}</h2></center>
+                                                {% endfor %}
+{#                                            {% for x in timme %}#}
+{#                                                <center><h1 id="total_hours">{{ x.time_now |date:'H:i:s'}}</h1></center>#}
+{#                                                {% endfor %}#}
+                                            {% for x in compare %}
+                                                <input type="hidden" value="{{ x.username }}" id="update_username">
+                                                 <input type="hidden" value="{{ x.emp_id }}" id="update_emp_id">
+                                                <input type="hidden" value="{{ x.curr_date }}" id="update_current_date">
+                                                <input type="hidden" value="{{ x.curr_time }}" id="update_current_time">
+
+
+                                            {% endfor %}
+												<span  class="text-muted font-size-lg font-weight-bold pr-2"></span>
+
+{#												<button class="btn btn-sm btn-primary font-weight-bolder px-6" id="current_time">{{ clockin.current_time }}</button>#}
+											</div>
+											<!--end::Footer-->
+										</div>
+										<!--end::Stats Widget 12-->
+									</div>
+
+								</div>
+								 <div class="card-header border-0 pt-7">
+												<h3 class="card-title align-items-start flex-column">
+													<span class="card-label font-weight-bolder font-size-h4 text-dark-75">Time Log :</span>
+													<span class="text-muted mt-3 font-weight-bold font-size-lg"></span>
+												</h3>
+												<div class="card-toolbar">
+													<ul class="nav nav-pills nav-pills-sm nav-dark">
+														<li class="nav-item">
+															<a class="nav-link py-2 px-4 active font-weight-bolder font-size-sm" data-toggle="tab" href="#kt_tab_table_1_3">Recent Timelogs</a>
+														</li>
+														<li class="nav-item ml-0">
+															<a class="nav-link py-2 px-4 font-weight-bolder font-size-sm" data-toggle="tab" href="#kt_tab_table_1_1">Today Timelog</a>
+														</li>
+{#														<li class="nav-item ml-0">#}
+{#															<a class="nav-link py-2 px-4 font-weight-bolder font-size-sm" data-toggle="tab" href="#kt_tab_table_1_2">Today Timelog</a>#}
+{#														</li>#}
+
+													</ul>
+												</div>
+											 <div class="container">
+											 <div class="card-body pt-1 pb-4">
+												<div class="tab-content mt-5 table table-bordered datatable-table" id="myTabTable1 kt_table">
+													<!--begin::Tap pane-->
+													<div class="tab-pane fade" id="kt_tab_table_1_1" role="tabpanel" aria-labelledby="kt_tab_table_1_1">
+														<!--begin::Table-->
+														<div class="table-responsive">
+															<table class="table table-borderless table-vertical-center" >
+																 <tr>
+																			<th>ID</th>
+																		<th>Clockin Time</th>
+																		<th>Clockout Time</th>
+																		<th>Total Hours</th>
+																		 <th>Date</th>
+
+
+
+																		{% for value in today_log %}
+{#																		{% if value.work_status == "completed" %}#}
+																			<tr>
+																				<td>{{ forloop.counter }}</td>
+																			<td>{{ value.user_clockin_time }}</td>
+																			<td>{{ value.user_clockout_time }} </td>
+																			<td>{{ value.user_total_hours }}</td>
+																			<td class="label label-lg label-light-success label-inline">{{ value.user_current_date }}</td>
+{#																			<td class="label label-lg label-light-success label-inline ">{{ value.work_status }}</td>#}
+
+
+																			</tr>
+{#																		{% endif %}#}
+																		{% endfor %}
+															</table>
+														</div>
+														<!--end::Tablet-->
+													</div>
+													<!--end::Tap pane-->
+													<!--begin::Tap pane-->
+													<div class="tab-pane fade" id="kt_tab_table_1_2" role="tabpanel" aria-labelledby="kt_tab_table_1_2">
+														<!--begin::Table-->
+														<div class="table-responsive">
+															<table class="table table-borderless table-vertical-center">
+																 <tr>
+																		<th>ID</th>
+																		<th>Clockin Time</th>
+																		<th>Clockout Time</th>
+																		 <th>Date</th>
+
+																		{% for value in total_opened %}
+																			<tr>
+																			<td>{{ value.vendor_code }}</td>
+																			<td>{{ value.vendor_name }}</td>
+																			<td>{{ value.document_date }} </td>
+																			<td>{{ value.delivery_note }}</td>
+																			<td>{{ value.status }}</td>
+																			<td class="label label-lg label-light-success label-inline ">{{ value.work_status }}</td>
+																			</tr>
+																		{% endfor %}
+															</table>
+														</div>
+														<!--end::Tablet-->
+													</div>
+													<!--end::Tap pane-->
+													<!--begin::Tap pane-->
+													<div class="tab-pane fade show active" id="kt_tab_table_1_3" role="tabpanel" >
+														<!--begin::Table-->
+														<div class="table-responsive">
+															<table class="table table-borderless table-vertical-center">
+																 <tr>
+																		<th>ID</th>
+																		<th>Clockin Time</th>
+																		<th>Clockout Time</th>
+																		<th>Total Hours</th>
+																		<th>Attendance</th>
+																	    <th>Date</th>
+
+
+																		{% for value in recent_log %}
+{#																		{% if value.status == "ocr" %}#}
+																			<tr>
+																			<td>{{ forloop.counter }}</td>
+																			<td>{{ value.user_clockin_time }}</td>
+																			<td>{{ value.user_clockout_time }} </td>
+																			<td>{{ value.user_total_hours }}</td>
+																			<td>{{ value.attendance_form }}</td>
+																			<td class="label label-lg label-light-success label-inline">{{ value.user_current_date }}</td>
+{#																			<td class="label label-lg label-light-success label-inline ">{{ value.work_status }}</td>#}
+																			</tr>
+{#																		{% endif %}#}
+																		{% endfor %}
+															</table>
+														</div>
+														<!--end::Tablet-->
+													</div>
+													<!--end::Tap pane-->
+												</div>
+											</div>
+
+<!--    <div class="row">-->
+
+<!--                                         <canvas id="myChart1" style="width:150%;max-width:380px"></canvas>-->
+<!--                                         <canvas id="myChart2" style="width:50%;max-width:280px"></canvas>-->
+<!--                                         <canvas id="myChart3" style="width:100%;max-width:280px"></canvas>-->
+<!--                                         <canvas id="myChart" style="width:50%;max-width:280px"></canvas>-->
+<!--    </div>-->
+                                         </div>
+											</div>
+   
+                                </form>
+                             <style>
+        .cal{
+            height: 900px;
+
+        }
+
+</style>
+
+<div style="display: none" class="form-group row">
+    <label class="col-xl-3 col-lg-3 col-form-label">Hidden ID </label>
+    <div class="col-lg-9 col-xl-9">
+        <input class="form-control form-control-solid form-control-lg" value="{{ clockin.curr_time }}" id="clock_current_time" name="update_password_id" type="text" placeholder="Current Password" />
+
+        <input class="form-control form-control-solid form-control-lg" value="{{ clockin.id }}" id="id" name="update_password_id" type="text" placeholder="Current Password" />
+        <input class="form-control form-control-solid form-control-lg" value="{{ clockin.username }}" id="username" name="user_username" type="text" placeholder="Current Password" />
+        <input class="form-control form-control-solid form-control-lg" value="{{ clockin.emp_id }}" id="emp_id" name="update_password_id" type="text" placeholder="Current Password" />
+        <input class="form-control form-control-solid form-control-lg"  id="button_id" name="button_id" type="text" placeholder="Current Password" />
+        <input class="form-control form-control-solid form-control-lg"  id="button_name" name="button_name" type="text" placeholder="Current Password" />
+        <input class="form-control form-control-solid form-control-lg"  id="button_color" name="button_color" type="text" placeholder="Current Password" />
+    </div>
+</div>
+
+
+								<!--begin::Dashboard-->
+								<!--begin::Row-->
+								<!--end::Dashboard-->
+							</div>
+							<!--end::Container-->
+						</div>
+						<!--end::Entry-->
+					</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
+
+<script>
+
+
+ $(document).ready(function(){
+
+    $(document).on('click', '#clock_in', function(){
+
+        var now     = new Date();
+        var year    = now.getFullYear();
+        var month   = now.getMonth()+1;
+        var day     = now.getDate();
+        var hour    = now.getHours();
+        var minute  = now.getMinutes();
+        var second  = now.getSeconds();
+        if(month.toString().length == 1) {
+             month = '0'+month;
+        }
+        if(day.toString().length == 1) {
+             day = '0'+day;
+        }
+        if(hour.toString().length == 1) {
+             hour = '0'+hour;
+        }
+        if(minute.toString().length == 1) {
+             minute = '0'+minute;
+        }
+        if(second.toString().length == 1) {
+             second = '0'+second;
+        }
+        var dateTime = hour+':'+minute+':'+second;
+        var datee = year+'-'+month+'-'+day;
+
+        var current_date = datee;
+        var current_time = dateTime;
+        var id = $("#id").val();
+        var username = $("#username").val();
+        var emp_id = $("#emp_id").val();
+         var button_id = "clock_out";
+        var button_color = '#ffc107';
+        var button_name = 'clock out';
+        var status = '1';
+        var location = 'location';
+        // alert(current_time)
+            $.ajax({
+                type: "POST",
+                url: "{%  url 'clockin_update' %}",
+                data:{
+                    current_date:current_date,
+                    current_time: current_time,
+                    id:id,
+                    emp_id:emp_id,
+                    username:username,
+                    button_id:button_id,
+                    button_color:button_color,
+                    button_name:button_name,
+                    status:status,
+                    location:location,
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                },
+                success: function (html){
+                                  Swal.fire({
+                                    title: "Success",
+                                    text: "Clocked In...!",
+                                    icon: "success",
+                                    showConfirmButton: false,
+                                    timer:1500
+                                }).then(function () {
+                                   window.location.reload();
+
+                                });
+                // $("#cloc").removeAttr("disabled", "disabled");
+            },
+                error:function (){
+                    alert("error");
+                }
+            });
+
+    });
+
+
+});
+$(document).ready(function() {
+        $("#clock_out").click(function () {
+        var now     = new Date();
+        var year    = now.getFullYear();
+        var month   = now.getMonth()+1;
+        var day     = now.getDate();
+        var hour    = now.getHours();
+        var minute  = now.getMinutes();
+        var second  = now.getSeconds();
+        if(month.toString().length == 1) {
+             month = '0'+month;
+        }
+        if(day.toString().length == 1) {
+             day = '0'+day;
+        }
+        if(hour.toString().length == 1) {
+             hour = '0'+hour;
+        }
+        if(minute.toString().length == 1) {
+             minute = '0'+minute;
+        }
+        if(second.toString().length == 1) {
+             second = '0'+second;
+        }
+        var dateTime = hour+':'+minute+':'+second;
+        var datee = year+'-'+month+'-'+day;
+
+
+            var user_current_date = datee;
+            var user_clockout_time = dateTime
+           var id = $("#id").val();
+            var username = $("#username").val();
+            var emp_id = $("#emp_id").val();
+             var button_id = "clock_in";
+            var button_color = '#6610f2';
+            var button_name = 'clock in';
+            var user_clockin_time= $("#clock_current_time").val();
+            var current_time = '';
+            var current_date='';
+           var status = '0';
+            var location = '';
+            var attendance_form = 'present';
+             var total_hours = $("#total_hours").html();
+             var timm = $("#output").html();
+
+             {#var intime = "10:10:00";#}
+            {#var t1 = datetime.strptime(intime, "%H:%M:%S");#}
+
+            var d1 = $("#clock_current_time").val();
+        var d2 = dateTime;
+
+        var s1=moment(d1, "h:m:s");
+        var s2=moment(d2, "h:m:s");
+        // alert(s1)
+        // alert(s2)
+        var date1=new Date(s1);
+        var date2=new Date(s2);
+
+        var diff = date2.getTime() - date1.getTime();
+
+        var msec = diff;
+        var hh = Math.floor(msec / 1000 / 60 / 60);
+        if(hh<10){
+            hh='0'+hh;
+        }
+        msec -= hh * 1000 * 60 * 60;
+        var mm = Math.floor(msec / 1000 / 60);
+        msec -= mm * 1000 * 60;
+        if(mm<10){
+            mm='0'+mm;
+        }
+        var ss = Math.floor(msec / 1000);
+        msec -= ss * 1000;
+        if(ss<10){
+            ss='0'+ss;
+        }
+        var tot_hours=hh + ":" + mm + ":" + ss
+            $.ajax({
+                type: 'POST',
+                url: "{%  url 'clockout_update' %}",
+                data:{
+                    id:id,
+                    emp_id:emp_id,
+                    username:username,
+                    button_id:button_id,
+                    button_color:button_color,
+                    button_name:button_name,
+                    current_date:current_date,
+                    current_time:current_time,
+                    user_clockin_time:user_clockin_time,
+                    user_clockout_time:user_clockout_time,
+                    user_current_date:user_current_date,
+                    status:status,
+                    location:location,
+                    attendance_form:attendance_form,
+                     total_hours:total_hours,
+                     timm:timm,
+                     tot_hours:tot_hours,
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                },
+
+               success: function (html){
+                                  Swal.fire({
+                                    title: "Success",
+                                    text: "Clocked Out...!",
+                                    icon: "success",
+                                    showConfirmButton: false,
+                                    timer:1500
+                                }).then(function () {
+                                    window.location.reload();
+                                });
+                // $("#cloc").removeAttr("disabled", "disabled");
+            },
+                error:function (){
+                    alert("error");
+                }
+            });
+        });
+     });
+
+
+
+
+ {#function diff() {#}
+ {#    var a = moment('2022-07-25 10:00:00');#}
+ {#    var b = moment();#}
+ {#    diff = moment.preciseDiff(a, b, true);#}
+ {##}
+ {#    intervals = ['years','months''hours', 'minutes', 'seconds'];#}
+ {#    output = [];#}
+ {##}
+ {#    for (var i = 0; i < intervals.length; i++) {#}
+ {#        var d = diff[intervals [i]];var d = d < 10 ? '0' + d : d;#}
+ {#        output.push(d + '' + intervals [i]);#}
+ {#    }#}
+ {#    document.getElementById("output").innerHTML = output.join("");#}
+ {# }#}
+ {#setInterval(diff,1000);#}
+ {#       diff_years=diff['year'];#}
+ {#       diff_months=diff['months'];#}
+ {#       diff_days=diff['days'];#}
+ {#       diff_hours=diff['hours'];#}
+ {#       diff_minutes=diff['minutes'];#}
+ {#       diff_seconds=diff['seconds'];#}
+ {##}
+ {#    document.getElementById("output").innerHTML=diff_hours+"hours"+diff_minutes+"minutes"+diff_seconds+"seconds";#}
+ {##}
+ {# }#}
+ {#setInterval(diff,1000);#}
+
+
+var timers =$("#times").val();
+{#alert(timers)#}
+ var aa=moment(timers,"h,m,s");
+{#alert(aa)#}
+
+{#var bb =aa.valueOf();#}
+var startDateTime=new Date(aa);
+console.log(startDateTime)
+var startStamp = startDateTime.getTime();
+
+var newDate = new Date();
+var newStamp = newDate.getTime();
+
+var timer; // for storing the interval (to stop or pause later if needed)
+
+function updateClock() {
+    newDate = new Date();
+    newStamp = newDate.getTime();
+    var diff = Math.round((newStamp-startStamp)/1000);
+
+    var h = Math.floor(diff/(60*60));
+    diff = diff-(h*60*60);
+        if(h<10){
+            h='0'+h;
+        }
+    var m = Math.floor(diff/(60));
+    diff = diff-(m*60);
+      if(m<10){m='0'+m;}
+    var s = diff;
+  if(s<10){s='0'+s;}
+    if(isNaN(h)){
+        document.getElementById("output").innerHTML = "00:00:00";
+    }else{
+        document.getElementById("output").innerHTML = h+":"+m+":"+s;
+    }
+
+ }
+
+timer = setInterval(updateClock, 1000);
+</script>
+
+
+<script src="{% static 'js/user_page_js/user_clockin.js' %}"></script>
+{% endblock content %}
+

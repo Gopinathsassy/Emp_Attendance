@@ -1,0 +1,55 @@
+# from datetime import datetime
+from datetime import datetime
+import MySQLdb
+# import datetime
+
+db = MySQLdb.connect(host="localhost",
+                     user="root",
+                     passwd="",
+                     db="emp_attendance")
+
+cur = db.cursor()
+usernames = cur.execute("SELECT username,id FROM  attendance_tools_user_clock_in ")
+
+aa = datetime.now()
+user_current_time=aa.strftime("%H:%M:%S")
+print(user_current_time)
+for a in cur.fetchall():
+    data = a[0]
+    # print(str(data))
+
+    fetch_all = cur.execute("SELECT * FROM attendance_tools_user_clock_in where status=1 and username=%s",[data])
+    for x in cur.fetchall():
+        id = x[0]
+        date = x[1]
+        timess = x[2]
+        username = x[3]
+        emp_id = x[4]
+        button_color = x[5]
+        button_id = x[6]
+        button_name = x[7]
+        location = x[8]
+        status = [9]
+        print("x[2]")
+        print(timess)
+
+        s1 = timess
+        s2 = user_current_time
+        FMT = '%H:%M:%S'
+        total_hours = datetime.strptime(s2, FMT) - datetime.strptime(s1, FMT)
+        print("total_hours")
+        print(total_hours)
+
+        sql = ("""INSERT INTO attendance_tools_user_time_log(username,emp_id,user_clockin_time,user_clockout_time,user_current_date,user_total_hours)VALUES(%s,%s,%s,%s,%s,%s)""")
+        data = (username,emp_id,timess,user_current_time,date,total_hours)
+        cur.execute(sql, data)
+        db.commit()
+
+
+        code=("UPDATE attendance_tools_user_clock_in SET id=id,curr_time='',curr_date='',username=username,emp_id=emp_id,button_color='#6610f2',button_id='clock_in',button_name='clock in',location ='location1',status='0' WHERE id='%s'")
+
+        cur.execute(code, (id,))
+        db.commit()
+        # print("succes")
+
+db.close()

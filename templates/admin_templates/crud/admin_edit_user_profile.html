@@ -1,0 +1,567 @@
+{% extends 'admin_templates/admin_base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+						<!--begin::Subheader-->
+						<div  class="subheader py-6 py-lg-8 subheader-transparent" id="kt_subheader">
+							<div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+								<!--begin::Info-->
+								<div class="d-flex align-items-center flex-wrap mr-1">
+									<!--begin::Page Heading-->
+									<div class="d-flex align-items-baseline flex-wrap mr-5">
+										<!--begin::Page Title-->
+										<h5 class="text-dark font-weight-bold my-1 mr-5">Dashboard</h5>
+										<!--end::Page Title-->
+									</div>
+									<!--end::Page Heading-->
+								</div>
+								<!--end::Info-->
+								<!--begin::Toolbar-->
+
+								<div class="d-flex align-items-center flex-wrap">
+                                    {% block timelog %}
+                                    {% endblock timelog %}
+									<a href="#" class="btn btn-fixed-height btn-bg-white btn-text-dark-50 btn-hover-text-primary btn-icon-primary font-weight-bolder font-size-sm px-5 my-1 mr-3" id="kt_dashboard_daterangepicker" data-toggle="tooltip" title="Select dashboard daterange" data-placement="top">
+										<span class="opacity-60 font-weight-bolder mr-2" id="kt_dashboard_daterangepicker_title">Today</span>
+										<span class="font-weight-bolder" id="kt_dashboard_daterangepicker_date">Aug 16</span>
+									</a>
+
+
+									<!--end::Daterange-->
+{#									<!--begin::Dropdown-->#}
+{#									<div class="dropdown dropdown-inline" data-toggle="tooltip" title="Quick actions" data-placement="top">#}
+{#										<a href="#" class="btn btn-fixed-height btn-bg-white btn-text-dark-50 btn-hover-text-primary btn-icon-primary font-weight-bolder font-size-sm px-5 my-1 mr-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
+{#										<span class="svg-icon svg-icon-md">#}
+{#											<!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Add-user.svg-->#}
+{#											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">#}
+{#												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">#}
+{#													<polygon points="0 0 24 0 24 24 0 24" />#}
+{#													<path d="M18,8 L16,8 C15.4477153,8 15,7.55228475 15,7 C15,6.44771525 15.4477153,6 16,6 L18,6 L18,4 C18,3.44771525 18.4477153,3 19,3 C19.5522847,3 20,3.44771525 20,4 L20,6 L22,6 C22.5522847,6 23,6.44771525 23,7 C23,7.55228475 22.5522847,8 22,8 L20,8 L20,10 C20,10.5522847 19.5522847,11 19,11 C18.4477153,11 18,10.5522847 18,10 L18,8 Z M9,11 C6.790861,11 5,9.209139 5,7 C5,4.790861 6.790861,3 9,3 C11.209139,3 13,4.790861 13,7 C13,9.209139 11.209139,11 9,11 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" />#}
+{#													<path d="M0.00065168429,20.1992055 C0.388258525,15.4265159 4.26191235,13 8.98334134,13 C13.7712164,13 17.7048837,15.2931929 17.9979143,20.2 C18.0095879,20.3954741 17.9979143,21 17.2466999,21 C13.541124,21 8.03472472,21 0.727502227,21 C0.476712155,21 -0.0204617505,20.45918 0.00065168429,20.1992055 Z" fill="#000000" fill-rule="nonzero" />#}
+{#												</g>#}
+{#											</svg>#}
+{#											<!--end::Svg Icon-->#}
+{#										</span>Add Member</a>#}
+{#										<div class="dropdown-menu dropdown-menu-sm dropdown-menu-right p-0 m-0">#}
+{#											<!--begin::Navigation-->#}
+{#											<ul class="navi navi-hover">#}
+{#												<li class="navi-header pb-1">#}
+{#													<span class="text-primary text-uppercase font-weight-bolder font-size-sm">Add new:</span>#}
+{#												</li>#}
+{#												<li class="navi-item">#}
+{#													<a href="#" class="navi-link">#}
+{#														<span class="navi-icon">#}
+{#															<i class="flaticon2-shopping-cart-1"></i>#}
+{#														</span>#}
+{#														<span class="navi-text">Order</span>#}
+{#													</a>#}
+{#												</li>#}
+{#												<li class="navi-item">#}
+{#													<a href="#" class="navi-link">#}
+{#														<span class="navi-icon">#}
+{#															<i class="flaticon2-calendar-8"></i>#}
+{#														</span>#}
+{#														<span class="navi-text">Event</span>#}
+{#														<span class="navi-link-badge">#}
+{#															<span class="label label-light-danger label-inline font-weight-bold">new</span>#}
+{#														</span>#}
+{#													</a>#}
+{#												</li>#}
+{#												<li class="navi-item">#}
+{#													<a href="#" class="navi-link">#}
+{#														<span class="navi-icon">#}
+{#															<i class="flaticon2-graph-1"></i>#}
+{#														</span>#}
+{#														<span class="navi-text">Report</span>#}
+{#													</a>#}
+{#												</li>#}
+{#												<li class="navi-item">#}
+{#													<a href="#" class="navi-link">#}
+{#														<span class="navi-icon">#}
+{#															<i class="flaticon2-rocket-1"></i>#}
+{#														</span>#}
+{#														<span class="navi-text">Post</span>#}
+{#														<span class="navi-link-badge">#}
+{#															<span class="label label-light-success label-rounded font-weight-bolder">5</span>#}
+{#														</span>#}
+{#													</a>#}
+{#												</li>#}
+{#												<li class="navi-item">#}
+{#													<a href="#" class="navi-link">#}
+{#														<span class="navi-icon">#}
+{#															<i class="flaticon2-writing"></i>#}
+{#														</span>#}
+{#														<span class="navi-text">File</span>#}
+{#													</a>#}
+{#												</li>#}
+{#											</ul>#}
+{#											<!--end::Navigation-->#}
+{#										</div>#}
+{#									</div>#}
+{#									<!--end::Dropdown-->#}
+{#									<!--begin::Dropdown-->#}
+{#									<div class="dropdown dropdown-inline" data-toggle="tooltip" title="Quick actions" data-placement="top">#}
+{#										<a  href="#" class="btn btn-fixed-height btn-primary font-weight-bolder font-size-sm px-5 my-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
+{#										<span class="svg-icon svg-icon-md">#}
+{#											<!--begin::Svg Icon | path:assets/media/svg/icons/Files/File.svg-->#}
+{#											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">#}
+{#												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">#}
+{#													<polygon points="0 0 24 0 24 24 0 24" />#}
+{#													<path d="M5.85714286,2 L13.7364114,2 C14.0910962,2 14.4343066,2.12568431 14.7051108,2.35473959 L19.4686994,6.3839416 C19.8056532,6.66894833 20,7.08787823 20,7.52920201 L20,20.0833333 C20,21.8738751 19.9795521,22 18.1428571,22 L5.85714286,22 C4.02044787,22 4,21.8738751 4,20.0833333 L4,3.91666667 C4,2.12612489 4.02044787,2 5.85714286,2 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" />#}
+{#													<rect fill="#000000" x="6" y="11" width="9" height="2" rx="1" />#}
+{#													<rect fill="#000000" x="6" y="15" width="5" height="2" rx="1" />#}
+{#												</g>#}
+{#											</svg>#}
+{#											<!--end::Svg Icon-->#}
+{#										</span>New Report</a>#}
+{#										<div class="dropdown-menu dropdown-menu-md dropdown-menu-right p-0 m-0">#}
+{#											<!--begin::Navigation-->#}
+{#											<ul class="navi navi-hover">#}
+{#												<li class="navi-header font-weight-bold py-4">#}
+{#													<span class="font-size-lg">Choose Option:</span>#}
+{#													<i class="flaticon2-information icon-md text-muted" data-toggle="tooltip" data-placement="right" title="Click to learn more..."></i>#}
+{#												</li>#}
+{#												<li class="navi-separator mb-3 opacity-70"></li>#}
+{#												<li class="navi-item">#}
+{#													<a href="#" class="navi-link">#}
+{#														<span class="navi-text">#}
+{#															<span class="label label-xl label-inline label-light-primary">Orders</span>#}
+{#														</span>#}
+{#													</a>#}
+{#												</li>#}
+{#												<li class="navi-item">#}
+{#													<a href="#" class="navi-link">#}
+{#														<span class="navi-text">#}
+{#															<span class="label label-xl label-inline label-light-danger">Reports</span>#}
+{#														</span>#}
+{#													</a>#}
+{#												</li>#}
+{#												<li class="navi-item">#}
+{#													<a href="#" class="navi-link">#}
+{#														<span class="navi-text">#}
+{#															<span class="label label-xl label-inline label-light-warning">Tasks</span>#}
+{#														</span>#}
+{#													</a>#}
+{#												</li>#}
+{#												<li class="navi-item">#}
+{#													<a href="#" class="navi-link">#}
+{#														<span class="navi-text">#}
+{#															<span class="label label-xl label-inline label-light-success">Events</span>#}
+{#														</span>#}
+{#													</a>#}
+{#												</li>#}
+{#												<li class="navi-item">#}
+{#													<a href="#" class="navi-link">#}
+{#														<span class="navi-text">#}
+{#															<span class="label label-xl label-inline label-light-dark">Members</span>#}
+{#														</span>#}
+{#													</a>#}
+{#												</li>#}
+{#												<li class="navi-separator mt-3 opacity-70"></li>#}
+{#												<li class="navi-footer py-4">#}
+{#													<a class="btn btn-primary font-weight-bold btn-sm px-5" href="#">#}
+{#													<i class="ki ki-plus icon-sm"></i>Create</a>#}
+{#												</li>#}
+{#											</ul>#}
+{#											<!--end::Navigation-->#}
+{#										</div>#}
+{#									</div>#}
+{#									<!--end::Dropdown-->#}
+								</div>
+								<!--end::Toolbar-->
+							</div>
+						</div>
+						<!--end::Subheader-->
+						<!--begin::Entry-->
+						<div  class="d-flex flex-column-fluid">
+							<!--begin::Container-->
+							<div class="container">
+   <div class="flex-row-fluid ml-lg-8">
+{#       {% for admin_edit_user_profile in admin_edit_user_profile %}#}
+										<!--begin::Card-->
+										<div class="card card-custom card-stretch">
+											<!--begin::Header-->
+											<div class="card-header py-1">
+												<div class="card-title align-items-start flex-column">
+													<h3 class="card-label font-weight-bolder text-dark">User's Information</h3>
+													<span class="text-muted font-weight-bold font-size-sm mt-1">Update user's personal informaiton</span>
+												</div>
+												<div class="card-toolbar">
+													<button type="reset" class="btn btn-primary font-weight-bolder mr-2" id="admin_edit">Save Changes</button>
+													<button type="reset" class="btn btn-light-primary font-weight-bolder">Cancel</button>
+												</div>
+											</div>
+											<!--end::Header-->
+											<!--begin::Form-->
+											<form method="POST">
+												<!--begin::Body-->
+                                                {% csrf_token %}
+												<div class="card-body">
+													<div class="row">
+														<label class="col-xl-3"></label>
+														<div class="col-lg-9 col-xl-6">
+															<h5 class="font-weight-bold mb-6">Customer Info</h5>
+														</div>
+													</div>
+													<div class="form-group row">
+														<label class="col-xl-3 col-lg-3 col-form-label text-right">Photo</label>
+														<div class="col-lg-9 col-xl-6">
+															<div class="image-input image-input-outline" id="kt_profile_avatar" style="background-image: url(assets/media/users/blank.png)">
+																<div class="image-input-wrapper" style="background-image: url(assets/media/users/150-11.jpg)">
+                                                                    {% if admin_edit_user_profile.user_image %}
+{#                                                                    <div class="image-input-wrapper" >#}
+
+                                                                <img class="image-input-wrapper" name="profile_avatar" id="kt_profile_avatar" src="{{ admin_edit_user_profile.user_image.url }}" alt="" style="width:120px;" height="120px">
+
+{#                                                                </div>#}
+                                                                    {% else %}
+                                                                     <img class="image-input-wrapper" name="" id="" src="{% static 'assets/media/users/blank.png' %}" alt="" style="width:120px;" height="120px">
+
+                                                                {% endif %}
+                                                                </div>
+																<label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="Change avatar">
+																	<i class="fa fa-pen icon-sm text-muted"></i>
+																	<input type="file" name="profile_avatar" accept=".png, .jpg, .jpeg" />
+																	<input type="hidden" name="profile_avatar_remove" />
+																</label>
+																<span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="cancel" data-toggle="tooltip" title="Cancel avatar">
+																	<i class="ki ki-bold-close icon-xs text-muted"></i>
+																</span>
+																<span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="remove" data-toggle="tooltip" title="Remove avatar">
+																	<i class="ki ki-bold-close icon-xs text-muted"></i>
+																</span>
+															</div>
+															<span class="form-text text-muted">Allowed file types: png, jpg, jpeg.</span>
+														</div>
+													</div>
+                                                      <div class="form-group row">
+{#														<label class="col-xl-3 col-lg-3 col-form-label text-right">ID </label>#}
+														<div class="col-lg-9 col-xl-6">
+                                                            <input class="form-control form-control-lg form-control-solid" id="is_lead" type="hidden" value="{{ admin_edit_user_profile.is_lead }}"/>
+                                                            <input class="form-control form-control-lg form-control-solid" id="user_password" type="hidden" value="{{ admin_edit_user_profile.user_password }}"/>
+                                                            <input class="form-control form-control-lg form-control-solid" id="id" type="hidden" value="{{ admin_edit_user_profile.id }}"/>
+                                                            <input class="form-control form-control-lg form-control-solid" id="image" type="hidden" value="{{ admin_edit_user_profile.user_image }}"/>
+														</div>
+													</div>
+                                                     <div class="form-group row">
+{#														<label class="col-xl-3 col-lg-3 col-form-label text-right">ID </label>#}
+														<div class="col-lg-9 col-xl-6">
+															<input class="form-control form-control-lg form-control-solid" id="password" type="hidden" value="{{ admin_edit_user_profile.password }}"/>
+														</div>
+													</div>
+                                                    <div class="form-group row">
+														<label class="col-xl-3 col-lg-3 col-form-label text-right">User Name</label>
+														<div class="col-lg-9 col-xl-6">
+															<input class="form-control form-control-lg form-control-solid" id="username" type="text" value="{{ admin_edit_user_profile.username }}" readonly/>
+														</div>
+													</div>
+													<div class="form-group row">
+														<label class="col-xl-3 col-lg-3 col-form-label text-right">Employee ID</label>
+														<div class="col-lg-9 col-xl-6">
+															<input class="form-control form-control-lg form-control-solid" id="emp_id" type="text" value="{{ admin_edit_user_profile.emp_id }}" readonly/>
+														</div>
+													</div>
+                                                    <div class="form-group row">
+														<label class="col-xl-3 col-lg-3 col-form-label text-right">First Name</label>
+														<div class="col-lg-9 col-xl-6">
+															<input class="form-control form-control-lg form-control-solid" id="first_name" type="text" value="{{ admin_edit_user_profile.first_name }}" />
+														</div>
+													</div>
+                                                    <div class="form-group row">
+														<label class="col-xl-3 col-lg-3 col-form-label text-right">Last Name</label>
+														<div class="col-lg-9 col-xl-6">
+															<input class="form-control form-control-lg form-control-solid" id="last_name" type="text" value="{{ admin_edit_user_profile.last_name }}" />
+														</div>
+													</div>
+                                                     <div class="form-group row">
+                                                        <label class="col-xl-3 col-lg-3 col-form-label text-right">Gender</label>
+                                                        <div class="col-lg-9 col-xl-6">
+                                                            <select class="form-control form-control-lg form-control-solid" id="gender" name="gender">
+                                                                <option selected>{{ admin_edit_user_profile.gender }}</option>
+                                                                <option>Male</option>
+                                                                <option>Female</option>
+                                                            </select>
+                                                         </div>
+                                                </div>
+
+                                                       <div class="form-group row">
+														<label class="col-xl-3 col-lg-3 col-form-label text-right">Blood Group</label>
+														<div class="col-lg-9 col-xl-6">
+															<input class="form-control form-control-lg form-control-solid" id="blood_group" type="text" value="{{ admin_edit_user_profile.blood_group }}" />
+														</div>
+													</div>
+
+                                                    <div class="form-group row">
+														<label class="col-xl-3 col-lg-3 col-form-label text-right">Job Role</label>
+														<div class="col-lg-9 col-xl-6">
+															<input class="form-control form-control-lg form-control-solid" id="job_role" type="text" value="{{ admin_edit_user_profile.job_role }}" />
+														</div>
+													</div>
+                                                    <div class="form-group row">
+                                                                            <label class="col-xl-3 col-lg-3 col-form-label text-right">Module *</label>
+                                                                            <div class="col-lg-9 col-xl-6">
+                                                                                <select class="form-control form-control-lg form-control-solid" id="module" name="module" >
+                                                                                    <option selected>{{ admin_edit_user_profile.module }}</option>
+                                                                                    <option>Digital</option>
+                                                                                    <option>Basis</option>
+                                                                                    <option>MM</option>
+                                                                                    <option>PP</option>
+                                                                                    <option>QM</option>
+                                                                                    <option>PM</option>
+                                                                                    <option>FI</option>
+                                                                                    <option>CO</option>
+                                                                                    <option>SD</option>
+                                                                                    <option>WM</option>
+                                                                                    <option>Security</option>
+
+
+
+                                                                                </select>
+                                                                             </div>
+                                                                        </div>
+                                                    <div class="form-group row">
+														<label class="col-xl-3 col-lg-3 col-form-label text-right">Date Of Birth</label>
+														<div class="col-lg-9 col-xl-6">
+															<input class="form-control form-control-lg form-control-solid" id="dob" type="date" value="{{ admin_edit_user_profile.dob }}" />
+														</div>
+													</div>
+
+
+
+													<div class="form-group row">
+														<label class="col-xl-3 col-lg-3 col-form-label text-right">Adhar Number</label>
+														<div class="col-lg-9 col-xl-6">
+															<input class="form-control form-control-lg form-control-solid" id="adhar_no" type="text" value="{{ admin_edit_user_profile.adhar_no }}" />
+{#															<span class="form-text text-muted">If you want your invoices addressed to a company. Leave blank to use your full name.</span>#}
+														</div>
+													</div>
+													<div class="row">
+														<label class="col-xl-3"></label>
+														<div class="col-lg-9 col-xl-6">
+															<h5 class="font-weight-bold mt-10 mb-6">Contact Info</h5>
+														</div>
+													</div>
+													<div class="form-group row">
+														<label class="col-xl-3 col-lg-3 col-form-label text-right">Mobile Number</label>
+														<div class="col-lg-9 col-xl-6">
+															<div class="input-group input-group-lg input-group-solid">
+																<div class="input-group-prepend">
+																	<span class="input-group-text">
+																		<i class="la la-phone"></i>
+																	</span>
+																</div>
+																<input type="text" class="form-control form-control-lg form-control-solid" id="mobile_no" value="{{ admin_edit_user_profile.mobile_no }}" placeholder="Phone" />
+															</div>
+{#															<span class="form-text text-muted">We'll never share your email with anyone else.</span>#}
+														</div>
+													</div>
+													 <div class="form-group row">
+														<label class="col-xl-3 col-lg-3 col-form-label text-right">Official Email Address</label>
+														<div class="col-lg-9 col-xl-6">
+															<div class="input-group input-group-lg input-group-solid">
+																<div class="input-group-prepend">
+																	<span class="input-group-text">
+																		<i class="la la-at"></i>
+																	</span>
+																</div>
+																<input type="text" class="form-control form-control-lg form-control-solid" id="official_email_id" value="{{ admin_edit_user_profile.official_email_id}}" placeholder="Email" />
+															</div>
+														</div>
+													</div>
+													<div class="form-group row">
+														<label class="col-xl-3 col-lg-3 col-form-label text-right">Personal Email Address</label>
+														<div class="col-lg-9 col-xl-6">
+															<div class="input-group input-group-lg input-group-solid">
+																<div class="input-group-prepend">
+																	<span class="input-group-text">
+																		<i class="la la-at"></i>
+																	</span>
+																</div>
+																<input type="text" class="form-control form-control-lg form-control-solid" id="personal_email_id" value="{{ admin_edit_user_profile.personal_email_id}}" placeholder="Email" />
+															</div>
+														</div>
+													</div>
+
+                                                    <div class="form-group row">
+														<label class="col-xl-3 col-lg-3 col-form-label text-right">Address</label>
+														<div class="col-lg-9 col-xl-6">
+															<textarea class="form-control form-control-lg form-control-solid"  rows="4" cols="10" id="address" type="textarea" value="">{{ admin_edit_user_profile.address }}</textarea>
+															<!--<textarea class="form-control form-control-solid form-control-lg" id="address" cols="50" name="mobile_no" type="text"  placeholder="Address" ></textarea>-->
+
+														</div>
+													</div>
+                                                    <div class="row">
+														<label class="col-xl-3"></label>
+														<div class="col-lg-9 col-xl-6">
+															<h5 class="font-weight-bold mt-10 mb-6">Account Details</h5>
+														</div>
+													</div>
+													<div class="form-group row">
+														<label class="col-xl-3 col-lg-3 col-form-label text-right">Account Number</label>
+														<div class="col-lg-9 col-xl-6">
+															<div class="input-group input-group-lg input-group-solid">
+																<div class="input-group-prepend">
+																	<span class="input-group-text">
+																		<i class="la la-phone"></i>
+																	</span>
+																</div>
+																<input type="text" class="form-control form-control-lg form-control-solid" id="acc_no" value="{{ admin_edit_user_profile.acc_no }}" placeholder="Account Number" />
+															</div>
+{#															<span class="form-text text-muted">We'll never share your email with anyone else.</span>#}
+														</div>
+													</div>
+                                                    <div class="form-group row">
+														<label class="col-xl-3 col-lg-3 col-form-label text-right">IFSC Code</label>
+														<div class="col-lg-9 col-xl-6">
+															<div class="input-group input-group-lg input-group-solid">
+																<div class="input-group-prepend">
+																	<span class="input-group-text">
+																		<i class="la la-phone"></i>
+																	</span>
+																</div>
+																<input type="text" class="form-control form-control-lg form-control-solid" id="ifsc_code" value="{{ admin_edit_user_profile.ifsc_code }}" placeholder="IFSC Code" />
+															</div>
+{#															<span class="form-text text-muted">We'll never share your email with anyone else.</span>#}
+														</div>
+													</div>
+                                                    <div class="form-group row">
+														<label class="col-xl-3 col-lg-3 col-form-label text-right">Branch</label>
+														<div class="col-lg-9 col-xl-6">
+															<div class="input-group input-group-lg input-group-solid">
+																<div class="input-group-prepend">
+																	<span class="input-group-text">
+																		<i class="la la-phone"></i>
+																	</span>
+																</div>
+																<input type="text" class="form-control form-control-lg form-control-solid" id="branch" value="{{ admin_edit_user_profile.branch }}" placeholder="branch" />
+															</div>
+{#															<span class="form-text text-muted">We'll never share your email with anyone else.</span>#}
+														</div>
+													</div>
+												</div>
+												<!--end::Body-->
+											</form>
+											<!--end::Form-->
+										</div>
+									</div>
+
+
+
+
+
+								<!--begin::Dashboard-->
+								<!--begin::Row-->
+								<!--end::Dashboard-->
+							</div>
+							<!--end::Container-->
+						</div>
+						<!--end::Entry-->
+					</div>
+
+
+
+
+     <script src="{% static 'js/admin_page_js/edit_user_js.js' %}"></script>
+<script>
+$('#admin_edit').on('click', function(){
+        var id = $("#id").val();
+         var password = $("#password").val();
+        var emp_id = $("#emp_id").val();
+        var username = $("#username").val();
+        var first_name = $("#first_name").val();
+        var last_name = $("#last_name").val();
+        var blood_group = $("#blood_group").val();
+        var dob = $("#dob").val();
+        var module = $("#module").val();
+        var gender = $("#gender").val();
+        var official_email_id = $("#official_email_id").val();
+        var personal_email_id = $("#personal_email_id").val();
+        var adhar_no = $("#adhar_no").val();
+        var mobile_no = $("#mobile_no").val();
+        var job_role = $("#job_role").val();
+        var address = $("#address").val();
+        var acc_no = $("#acc_no").val();
+        var ifsc_code = $("#ifsc_code").val();
+        var branch = $("#branch").val();
+        var image = $("#image").val();
+        var is_lead = $("#is_lead").val();
+        var user_password = $("#user_password").val();
+
+alert(user_password)
+
+        // if(first_name == "" || last_name == "" || address == "" || username == ""){
+    {#alert(id);#}
+        // }else{
+        const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+            Swal.fire({
+                title: "Are you sure you want to update?",
+                text:"",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Yes",
+                cancelButtonText: "No"
+            }).then(function(result) {
+                if (result.value){
+
+                      $.ajax({
+                      url: "{% url 'admin_user_update_data' %}",
+                    method :'POST',
+                    headers: {'X-CSRFToken': csrftoken},
+                     data: {
+                        id: id,
+                        password:password,
+                        emp_id: emp_id,
+                        username: username,
+                        first_name: first_name,
+                        last_name: last_name,
+                        blood_group:blood_group,
+                        dob: dob,
+                        module:module,
+                        gender: gender,
+                        official_email_id: official_email_id,
+                        personal_email_id: personal_email_id,
+                        adhar_no: adhar_no,
+                        mobile_no: mobile_no,
+                        job_role:job_role,
+                        address:address,
+                        acc_no:acc_no,
+                        ifsc_code:ifsc_code,
+                        branch:branch,
+                        image:image,
+                        user_password:user_password,
+                        is_lead:is_lead
+            
+                     },
+                    success: function (dataResult) {
+                        // if (dataResult === 'no'){
+
+                            Swal.fire({
+                                position: "center",
+                                icon: "success",
+                                title: "User details has been updated...!",
+                                showConfirmButton: false,
+                                timer: 1500
+                            }).then(function (){
+                               location.reload();
+                            });
+
+                    }
+                });
+
+            } else if (result.dismiss === "cancel") {
+                 Swal.fire({
+                     position: "center",
+                     icon: "error",
+                     title: "User Not updated :)",
+                     showConfirmButton: false,
+                     timer: 1500
+                 });
+            }
+        });
+
+
+        });
+</script>
+{% endblock content %}
